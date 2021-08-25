@@ -1,0 +1,1456 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+	<meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="jackson, Hexo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>jackson | Hexo</title>
+    <link rel="icon" type="image/png" href="/f/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/f/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/my.css">
+
+    <script src="/f/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/f/" class="waves-effect waves-light">
+                    
+                    <img src="/f/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/f/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/f/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">jackson</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/f/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/f/tags/jackson/">
+                                <span class="chip bg-color">jackson</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/f/categories/json/" class="post-category">
+                                json
+                            </a>
+                        
+                            <a href="/f/categories/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/" class="post-category">
+                                常用组件
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-05-04
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/f/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><a target="_blank" rel="noopener" href="https://fangshixiang.blog.csdn.net/article/details/107363417">https://fangshixiang.blog.csdn.net/article/details/107363417</a></p>
+<span id="more"></span>
+
+<p>jackson-core 模块提供了两种处理 JSON 的方式（纵缆整个 Jackson 共三种）：</p>
+<p>流式 API：读取并将 JSON 内容写入作为离散事件 -&gt; JsonParser 从 json 字符串读取数据;而 JsonGenerator 负责写 json 字符串数据,至于写到文件.,控制台,还是网络,都可以.<br>树模型：JSON 文件在内存里以树形式表示。此种方式也很灵活，它类似于 XML 的 DOM 解析，层层嵌套的</p>
+<h1 id="1-模块介绍"><a href="#1-模块介绍" class="headerlink" title="1. 模块介绍"></a>1. 模块介绍</h1><h3 id="三大核心模块"><a href="#三大核心模块" class="headerlink" title="三大核心模块"></a>三大核心模块</h3><p><strong>core module(核心模块) 是扩展模块构建的基础</strong>。Jackson 目前有 3 个核心模块：</p>
+<blockquote>
+<p>说明：核心模块的 groupId 均为：<code>&lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;</code>，artifactId 见下面各模块所示</p>
+</blockquote>
+<ul>
+<li>Streaming 流处理模块(<code>jackson-core</code>)：定义底层处理流的 API：JsonPaser 和 JsonGenerator 等，并包含<strong>特定于 json</strong>的实现。</li>
+<li>Annotations 标准注解模块(<code>jackson-annotations</code>)：包含标准的 Jackson 注解</li>
+<li>Databind 数据绑定模块(<code>jackson-databind</code>)：在 streaming 包上实现数据绑定(和对象序列化)支持；<strong>它依赖于上面的两个模块</strong>，也是 Jackson 的高层 API(如 ObjectMapper)所在的模块</li>
+</ul>
+<p>实际应用级开发中，我们只会使用到 Databind 数据绑定模块，so 它是本系列重中之重。下面介绍那些举足轻重的<strong>第三方模块</strong>。</p>
+<h3 id="数据类型模块"><a href="#数据类型模块" class="headerlink" title="数据类型模块"></a>数据类型模块</h3><p>这些扩展是 Jackson 插件模块(通过<code>ObjectMapper.registerModule()</code>注册，下同)，并通过添加序列化器和反序列化器来对各种常用 Java 库数据类型的支持，以便<code>Jackson databind</code>包(<code>ObjectMapper / ObjectReader / ObjectWriter</code>)能够顺利读写/转换这些类型。<br>第三方模块有些是 Jackson 官方人员直接 lead 和维护的（主流模块），也有些是纯社区行为。现在按照这两个分类分别介绍一下各个模块的作用：<br><strong>官方直接维护：</strong></p>
+<blockquote>
+<p>说明：官方维护的这些数据类型模块的 groupId 统一为：<code>&lt;groupId&gt;com.fasterxml.jackson.datatype&lt;/groupId&gt;</code>，且版本号是和主版本号保持一致的</p>
+</blockquote>
+<p>数据格式模块<br>Data format modules(数据格式模块)提供对 JSON 之外的数据格式的支持。它们中的大多数只是实现 streaming API 抽象，以便数据绑定组件可以按原样使用。</p>
+<p>官方直接维护：</p>
+<p>说明：这些数据格式的模块的 groupId 均为 com.fasterxml.jackson.dataformat，且跟着主版本号走</p>
+<ul>
+<li>Avro/CBOR/Ion/Protobuf/Smile(binary JSON) ：这些均属于二进制的数据格式，它们的 artifactId 为：jackson-dataformat-[FORMAT]</li>
+<li>CSV/Properties/XML/YAML：这些格式熟悉吧，同样的支持到了这些常用的文本格式</li>
+</ul>
+<h1 id="2-jackson-core-之流式-API-与-JsonFactory、JsonGenerator、JsonParser"><a href="#2-jackson-core-之流式-API-与-JsonFactory、JsonGenerator、JsonParser" class="headerlink" title="2. jackson-core 之流式 API 与 JsonFactory、JsonGenerator、JsonParser"></a>2. jackson-core 之流式 API 与 JsonFactory、JsonGenerator、JsonParser</h1><p><code>jackson-core</code>模块提供了两种处理 JSON 的方式（整个 Jackson 一共 3 种）：</p>
+<ol>
+<li>流式 API：读取并将 JSON 内容写入作为离散事件 -&gt; <code>JsonParser</code>读取数据，而<code>JsonGenerator</code>负责写入数据. 流式 API 的使用：它是所有的三种方式中效率上最高的，当然也是最易出错、且最难使用的方式。</li>
+<li>树模型：JSON 文件在内存里以树形式表示。此种方式也很灵活，它类似于 XML 的 DOM 解析</li>
+</ol>
+<h3 id="概念解释：流式、增量模式、JsonToken"><a href="#概念解释：流式、增量模式、JsonToken" class="headerlink" title="概念解释：流式、增量模式、JsonToken"></a>概念解释：流式、增量模式、JsonToken</h3><ul>
+<li>流式（Streaming）：此概念和 Java8 中的 Stream 流是不同的。这里指的是 IO 流，因此具有最低的开销和最快的读/写操作（记得关流哦）</li>
+<li>增量模式（incremental mode）：它表示每个部分一个一个地往上增加，类似于垒砖。使用此流式 API 读写 JSON 的方式使用的均是增量模式</li>
+<li>JsonToken：每一部分都是一个独立的 Token（有不同类型的 Token），最终被“拼凑”起来就是一个 JSON。这是流式 API 里很重要的一个抽象概念。</li>
+</ul>
+<h3 id="JsonToken"><a href="#JsonToken" class="headerlink" title="JsonToken:"></a>JsonToken:</h3><blockquote>
+<p>枚举, 将 JSON 拆分开, 每个组成 JSON 都是一种 Token, 比如{ } [ ] 键 值等等.</p>
+</blockquote>
+<h1 id="3-JsonFactoryBuilder"><a href="#3-JsonFactoryBuilder" class="headerlink" title="3. JsonFactoryBuilder"></a>3. JsonFactoryBuilder</h1><p>2.10 新加的 Builder 模式工厂, 比 JsonFactory 更优雅</p>
+<h1 id="4-JsonFactory"><a href="#4-JsonFactory" class="headerlink" title="4. JsonFactory"></a>4. JsonFactory</h1><p>Jackson 的主要工厂类，用于  <strong>配置和构建</strong> <code>JsonGenerator</code>和<code>JsonParser</code>，这个工厂实例是线程安全的，因此<strong>可以重复使用</strong>。</p>
+<h4 id="JsonFactory-的-Feature"><a href="#JsonFactory-的-Feature" class="headerlink" title="JsonFactory 的 Feature"></a>JsonFactory 的 Feature</h4><ul>
+<li>INTERN_FIELD_NAMES(true)</li>
+</ul>
+<p>这是 Jackson 所谓的 key 缓存：对 JSON 的<strong>「字段名」</strong>是否调用<code>String#intern</code>方法，放进字符串常量池里，以提高效率，默认是 true。</p>
+<blockquote>
+<p>小贴士：Jackson 在调用 String#intern 之前使用<code>InternCache</code>（继承自 ConcurrentHashMap）挡了一层，以防止高并发条件下 intern 效果不显著问题</p>
+</blockquote>
+<p>「值得注意的是：此特征必须是<code>CANONICALIZE_FIELD_NAMES</code>也为 true（开启）的情况下才有效，否则是无效的。」</p>
+<ul>
+<li>CANONICALIZE_FIELD_NAMES(true)</li>
+</ul>
+<p>是否需要规范化属性名。所谓的规范化处理，就是去字符串池里尝试找一个字符串出来，默认值为 true。规范化借助的是<code>ByteQuadsCanonicalizer</code>去处理，简而言之会根据 Hash 值来计算每个属性名存放的位置~</p>
+<blockquote>
+<p>小贴士：ByteQuadsCanonicalizer 拥有一套优秀的 Hash 算法来规范化属性存储，提高效率，抵御攻击（见下特征）</p>
+</blockquote>
+<p>此特征开启了，<code>INTERN_FIELD_NAMES</code>特征的开启才有意义~</p>
+<h1 id="5-JsonGenerator"><a href="#5-JsonGenerator" class="headerlink" title="5. JsonGenerator"></a>5. JsonGenerator</h1><p>它是用于 writing JSON content 的基类（抽象类）, 构建 JSON</p>
+<h4 id="JsonGenerator-的-Feature"><a href="#JsonGenerator-的-Feature" class="headerlink" title="JsonGenerator 的 Feature"></a>JsonGenerator 的 Feature</h4><p>它是 JsonGenerator 的一个<strong>「内部」</strong>枚举类，共 10 个枚举值：<br>这个 Feature 的每个枚举值都控制着<code>JsonGenerator</code>写 JSON 时的不同行为，并且可分为三大类（源码处我也有标注）：</p>
+<ul>
+<li><p>Low-level I/O：底层 I/O 流相关。</p>
+<blockquote>
+<p>Jackson 的流式 API 指的是 I/O 流，因此就涉及到关流、flush 刷新流等操作</p>
+</blockquote>
+</li>
+<li><p>Quoting-related：双引号””引用相关。</p>
+<blockquote>
+<p>JSON 规范规定 key 都必须有双引号，但这对于某些场景下并不需要</p>
+</blockquote>
+</li>
+<li><p>Schema/Validity support：约束/规范/校验相关。</p>
+<blockquote>
+<p>JSON 作为 K-V 结构的数据，那么允许相同 key 出现吗？这便由这些特征去控制</p>
+</blockquote>
+</li>
+</ul>
+<p>下面分别来认识认识它们。</p>
+<ul>
+<li>AUTO_CLOSE_TARGET(true):                 自动关闭流</li>
+<li>AUTO<em>CLOSE_JSON_CONTENT(true):         自动补全_START_ARRAY/[, START_OBJECT/{</em></li>
+<li>FLUSH_PASSED_TO_STREAM(true):             当 JsonGenerator 调用 close()/flush()方法时，自动强刷 I/O 流里面的数据</li>
+</ul>
+<h1 id="6-JsonParser"><a href="#6-JsonParser" class="headerlink" title="6. JsonParser"></a>6. JsonParser</h1><p>定义了一组 API 用于 reading JSON content。解析 JSON</p>
+<h4 id="JsonParser-中的-Feature"><a href="#JsonParser-中的-Feature" class="headerlink" title="JsonParser 中的 Feature"></a>JsonParser 中的 Feature</h4><ul>
+<li><p>ALLOW_COMMENTS(false):                    不允许 JSON 中出现注释 ,.设置为 true 可以支持忽略他们 // /**/</p>
+</li>
+<li><p>ALLOW_YAML_COMMENTS(false)</p>
+<blockquote>
+<p><strong>❝</strong>&gt; 自 2.10 版本后，使用<code>JsonReadFeature#ALLOW_YAML_COMMENTS</code>代替<br>❞<br>顾名思义，开启后将支持 Yaml 格式的的注释，也就是<code>#</code>形式的注释语法。</p>
+</blockquote>
+</li>
+<li><p>ALLOW_UNQUOTED_FIELD_NAMES(false)</p>
+<blockquote>
+<p><strong>❝</strong>&gt; 自 2.10 版本后，使用<code>JsonReadFeature#ALLOW_UNQUOTED_FIELD_NAMES</code>代替<br>❞<br>是否允许属性名<strong>「不带双引号””」</strong>，比较简单，示例略。</p>
+</blockquote>
+</li>
+<li><p>ALLOW_SINGLE_QUOTES(false)</p>
+<blockquote>
+<p><strong>❝</strong>&gt; 自 2.10 版本后，使用<code>JsonReadFeature#ALLOW_SINGLE_QUOTES</code>代替<br>❞<br>是否允许属性名支持单引号，也就是使用<code>&#39;&#39;</code>包裹<br>ObjectCodec</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="7-ObjectMapper-的使用"><a href="#7-ObjectMapper-的使用" class="headerlink" title="7. ObjectMapper 的使用"></a>7. ObjectMapper 的使用</h1><p>jackson 高层 API, 日常使用最多</p>
+<h2 id="7-1-功能介绍"><a href="#7-1-功能介绍" class="headerlink" title="7.1 功能介绍"></a>7.1 功能介绍</h2><p>ObjectMapper 是 jackson-databind 模块最为重要的一个类，它完成了 coder 对数据绑定的<strong>「几乎所有功能」</strong>。它是面向用户的高层 API，底层依赖于 Streaming API 来实现读/写。ObjectMapper 主要提供的功能点如下：</p>
+<ul>
+<li>它提供读取和写入 JSON 的功能（最重要的功能）<ul>
+<li>普通 POJO 的序列化/反序列化</li>
+<li>JSON 树模型的读/写</li>
+</ul>
+</li>
+<li>它可以被<strong>「高度定制」</strong>，以使用不同风格的 JSON 内容<ul>
+<li>使用 Feature 进行定制</li>
+<li>使用可插拔<code>com.fasterxml.jackson.databind.Module</code>模块来扩展/丰富功能</li>
+</ul>
+</li>
+<li>它还支持<strong>「更高级」</strong>的对象概念：比如多态泛型、对象标识</li>
+<li>它还充当了更为高级（更强大）的 API：ObjectReader 和 ObjectWriter 的<strong>「工厂」</strong><ul>
+<li><code>ObjectReader</code>和<code>ObjectWriter</code>底层亦是依赖于 Streaming API 实现读写</li>
+</ul>
+</li>
+</ul>
+<p>尽管绝大部分的读/写 API 都通过 ObjectMapper 暴露出去了，但有些功能函数还是只放在了 ObjectReader/ObjectWriter 里，比如对于读/写 <strong>「长序列」</strong> 的能力你只能通过<code>ObjectReader#readValues(InputStream) / ObjectWriter#writeValues(OutputStream)</code>去处理，这是设计者有意为之，毕竟这种 case 很少很少，没必要和常用的凑合在一起嘛。</p>
+<h2 id="7-2-写（序列化）"><a href="#7-2-写（序列化）" class="headerlink" title="7.2 写（序列化）"></a>7.2 写（序列化）</h2><p>提供 writeValue()系列方法用于写数据（可写任何类型），也就是我们常说的序列化。</p>
+<ul>
+<li>writeValue(File resultFile, Object value)：写到目标文件里</li>
+<li>writeValue(OutputStream out, Object value)：写到输出流</li>
+<li>String writeValueAsString(Object value)：写成字符串形式，此方法最为常用</li>
+<li>writeValueAsBytes(Object value)：写成字节数组 byte[]</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ObjectMapper</span> objectMapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token class-name">String</span> params <span class="token operator">=</span> objectMapper<span class="token punctuation">.</span><span class="token function">writeValueAsString</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>
+         <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"touser"</span><span class="token punctuation">,</span><span class="token string">"@all"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"agentid"</span><span class="token punctuation">,</span><span class="token string">"1000002"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"msgtype"</span><span class="token punctuation">,</span><span class="token string">"text"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"duplicate_check_interval"</span><span class="token punctuation">,</span> <span class="token string">"600"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>
+             <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"content"</span><span class="token punctuation">,</span> <span class="token string">"msg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token comment">// &#123;"agentid":"1000002","touser":"@all","duplicate_check_interval":"600","text":&#123;"content":"msg"&#125;,"msgtype":"text"&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="7-3-读（反序列化）"><a href="#7-3-读（反序列化）" class="headerlink" title="7.3 读（反序列化）"></a>7.3 读（反序列化）</h2><ul>
+<li>readValue(String content, Class valueType)：读为指定 class 类型的对象，此方法最常用</li>
+<li>readValue(String content, TypeReference valueTypeRef)：T 表示泛型类型，如 List 这种类型，一般用于集合/Map 的反序列化</li>
+<li>readValue(String content, JavaType valueType)：Jackson 内置的 JavaType 类型，后再详解（使用并不多）</li>
+</ul>
+<p>泛型擦除问题。该问题只可能出现在读（反序列化）上，不能出现在写上。那么这种问题怎么破？<br><strong>「在解决此问题之前，我们得先对 Java 中的泛型擦除有所了解，至少知道如下两点结论：」</strong></p>
+<ol>
+<li>Java 在编译时会在字节码里指令集之外的地方保留<strong>「部分」</strong>泛型信息</li>
+<li>泛型接口、类、方法定义上的所有泛型、成员变量声明处的泛型<strong>「都会」</strong>被保留类型信息，<strong>「其它地方」</strong>的泛型信息都会被擦除</li>
+</ol>
+<p>此问题在开发过程中非常高频，有了此理论作为支撑，A 哥提供两种可以解决本问题的方案供以参考：</p>
+<h4 id="方案一：利用成员变量保留泛型"><a href="#方案一：利用成员变量保留泛型" class="headerlink" title="方案一：利用成员变量保留泛型"></a>方案一：利用成员变量保留泛型</h4><p>理论依据：成员变量的泛型类型不会被擦除</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test6</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">JsonProcessingException</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">ObjectMapper</span> objectMapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"----------读集合类型----------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Data</span> data <span class="token operator">=</span> objectMapper<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span><span class="token string">"&#123;\"ids\" : [1,2,3]&#125;"</span><span class="token punctuation">,</span> <span class="token class-name">Data</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Long</span> id <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">getIds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token annotation punctuation">@lombok.Data</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Data</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Long</span><span class="token punctuation">></span></span> ids<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行程序，一切正常：</p>
+<pre class="line-numbers language-none"><code class="language-none">----------读集合类型----------
+1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="方案二：使用官方推荐的TypeReference-lt-T-gt"><a href="#方案二：使用官方推荐的TypeReference-lt-T-gt" class="headerlink" title="方案二：使用官方推荐的TypeReference&lt;T&gt;"></a>方案二：使用官方推荐的<code>TypeReference&lt;T&gt;</code></h4><p>官方早早就为我们考虑好了这类泛型擦除的问题，所以它提供了<code>TypeReference&lt;T&gt;</code>方便我们把泛型类型保留下来，使用起来是非常的方便的：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test7</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">JsonProcessingException</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">ObjectMapper</span> objectMapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"----------读集合类型----------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Long</span><span class="token punctuation">></span></span> ids <span class="token operator">=</span> objectMapper<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span><span class="token string">"[1,2,3]"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TypeReference</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">Long</span><span class="token punctuation">></span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Long</span> id <span class="token operator">=</span> ids<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行程序，一切正常：</p>
+<pre class="line-numbers language-none"><code class="language-none">----------读集合类型----------
+1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>本方案的理论依据是：泛型接口/类上的泛型类型不会被擦除。<br>对于泛型擦除情况，解决思路是<strong>「hold 住」</strong>泛型类型，这样反序列化的时候才不会抓瞎。但凡只要一抓瞎，Jackson 就木有办法只能采用<strong>「通用/默认类型」</strong>去装载喽。</p>
+<h1 id="8-JsonMapper"><a href="#8-JsonMapper" class="headerlink" title="8. JsonMapper"></a>8. JsonMapper</h1><p>自<code>2.10</code>版本起，给 ObjectMapper 提供了一个子类：<code>JsonMapper</code>，使得语义更加明确，专门用于处理 JSON 格式。</p>
+<blockquote>
+<p><strong>❝</strong>&gt; 严格意义上讲，ObjectMapper 不局限于处理 JSON 格式，比如后面会讲到的它的另外一个子类<code>YAMLMapper</code>用于对 Yaml 格式的支持（需额外导包，后面见~）<br>❞<br>另外，由于构建一个 ObjectMapper 实例属于高频动作，因此 Jackson 也顺应潮流的提供了<code>MapperBuilder</code>构建器（2.10 版本起）。我们可以通过此构建起很容易的得到一个 ObjectMapper（以 JsonMapper 为例）实例来使用：</p>
+</blockquote>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test8</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">JsonProcessingException</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">JsonMapper</span> jsonMapper <span class="token operator">=</span> <span class="token class-name">JsonMapper</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">JsonReadFeature</span><span class="token punctuation">.</span>ALLOW_SINGLE_QUOTES<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Person</span> person <span class="token operator">=</span> jsonMapper<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span><span class="token string">"&#123;'name':  'YourBatman', 'age': 18&#125;"</span><span class="token punctuation">,</span> <span class="token class-name">Person</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行程序，正常输出：</p>
+<pre class="line-numbers language-none"><code class="language-none">Person(name&#x3D;YourBatman, age&#x3D;18)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="9-—树模型—"><a href="#9-—树模型—" class="headerlink" title="9. —树模型—"></a>9. —树模型—</h1><p>树模型是 JSON 数据内存树的表示形式，这是最灵活的方法，它就类似于 XML 的 DOM 解析器。Jackson 提供了树模型 API 来生成和解析 JSON 串，主要用到如下三个核心类：</p>
+<p>JsonNodeFactory：顾名思义，用来构造各种 JsonNode 节点的工厂。例如对象节点 ObjectNode、数组节点 ArrayNode 等等<br>JsonNode：表示 json 节点。可以往里面塞值，从而最终构造出一颗 json 树<br>ObjectMapper：实现 JsonNode 和 JSON 字符串的互转</p>
+<h2 id="JsonNode"><a href="#JsonNode" class="headerlink" title="JsonNode"></a>JsonNode</h2><p>类似 xml 的 DOM 解析. 每个 JSON 的组成都是 JsonNode</p>
+<h2 id="容器类型节点（ContainerNode）"><a href="#容器类型节点（ContainerNode）" class="headerlink" title="容器类型节点（ContainerNode）"></a>容器类型节点（ContainerNode）</h2><p>此类节点均为 ContainerNode 的子类，特点是：本节点代表一个容器，里面可以装任何其它节点。</p>
+<p>Java 中容器有两种：Map 和 Collection。对应的 Jackson 也提供了两种容器节点用于表述此类数据结构：</p>
+<p>ObjectNode：类比 Map，采用 K-V 结构存储。比如一个 JSON 结构，根节点 就是一个 ObjectNode<br>ArrayNode：类比 Collection、数组。里面可以放置任何节点</p>
+<h4 id="valueToTree-Object-返回-JsonNode"><a href="#valueToTree-Object-返回-JsonNode" class="headerlink" title="valueToTree(Object) 返回 JsonNode"></a>valueToTree(Object) 返回 JsonNode</h4><p>该方法属相对较为常用：将任意对象（包括 null）写为一个 JsonNode 树模型。功能上类似于先将 Object 序列化为 JSON 串，再读为 JsonNode，但很明显这样一步到位更加高效。</p>
+<h4 id="readTree-string-返回-JsonNode"><a href="#readTree-string-返回-JsonNode" class="headerlink" title="readTree(string) 返回 JsonNode"></a>readTree(string) 返回 JsonNode</h4><p>将一个资源（如字符串）读取为一个 JsonNode 树模型。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">JsonNodeFactory</span> factory <span class="token operator">=</span> <span class="token class-name">JsonNodeFactory</span><span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"------构建一个JSON结构数据------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ObjectNode</span> rootNode <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">objectNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 添加普通值节点</span>
+    rootNode<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"zhName"</span><span class="token punctuation">,</span> <span class="token string">"A哥"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 效果完全同：rootNode.set("zhName", factory.textNode("A哥"))</span>
+    rootNode<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"enName"</span><span class="token punctuation">,</span> <span class="token string">"YourBatman"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    rootNode<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 添加数组容器节点</span>
+    <span class="token class-name">ArrayNode</span> arrayNode <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">arrayNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    arrayNode<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"java"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"javascript"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"python"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    rootNode<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"languages"</span><span class="token punctuation">,</span> arrayNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 添加对象节点</span>
+    <span class="token class-name">ObjectNode</span> dogNode <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">objectNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    dogNode<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"大黄"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    rootNode<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"dog"</span><span class="token punctuation">,</span> dogNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>rootNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>rootNode<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"dog"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行程序，输出：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>构建一个JSON结构数据<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
+<span class="token punctuation">&#123;</span><span class="token string">"zhName"</span><span class="token operator">:</span><span class="token string">"A哥"</span><span class="token punctuation">,</span><span class="token string">"enName"</span><span class="token operator">:</span><span class="token string">"YourBatman"</span><span class="token punctuation">,</span><span class="token string">"age"</span><span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token string">"languages"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"java"</span><span class="token punctuation">,</span><span class="token string">"javascript"</span><span class="token punctuation">,</span><span class="token string">"python"</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">"dog"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span><span class="token string">"name"</span><span class="token operator">:</span><span class="token string">"大黄"</span><span class="token punctuation">,</span><span class="token string">"age"</span><span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+<span class="token string">"大黄"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><h2 id="1-将-java-对象转化为-json-字符串"><a href="#1-将-java-对象转化为-json-字符串" class="headerlink" title="1. 将 java 对象转化为 json 字符串"></a>1. 将 java 对象转化为 json 字符串</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>objectMapper<span class="token punctuation">.</span><span class="token function">writeValueAsString</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"名字"</span><span class="token punctuation">,</span> <span class="token string">"二狗子"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="2-手动构建一个-json-字符串"><a href="#2-手动构建一个-json-字符串" class="headerlink" title="2. 手动构建一个 json 字符串"></a>2. 手动构建一个 json 字符串</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">JsonNodeFactory</span> factory <span class="token operator">=</span> <span class="token class-name">JsonNodeFactory</span><span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"------构建一个JSON结构数据------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ObjectNode</span> rootNode <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">objectNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//添加节点</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-前端传过来的-json-字符串转换为对象"><a href="#3-前端传过来的-json-字符串转换为对象" class="headerlink" title="3. 前端传过来的 json 字符串转换为对象"></a>3. 前端传过来的 json 字符串转换为对象</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>objectMapper<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span><span class="token string">"&#123;\"name\":\"A哥\",\"age\":18&#125;"</span><span class="token punctuation">,</span> <span class="token class-name">Person</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="4-前端传过来的-json-字符串-提取某个值"><a href="#4-前端传过来的-json-字符串-提取某个值" class="headerlink" title="4. 前端传过来的 json 字符串, 提取某个值"></a>4. 前端传过来的 json 字符串, 提取某个值</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test4</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
+   <span class="token class-name">String</span> s <span class="token operator">=</span> objectMapper<span class="token punctuation">.</span><span class="token function">writeValueAsString</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>
+            <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token string">"mm"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>
+                <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"content"</span><span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">// s = &#123;"k1":"v1","k2":"v2","text":&#123;"content":"消息内容:2021年08月21日 17:58:01"&#125;&#125;</span>
+
+        <span class="token class-name">JsonMapper</span> jsonMapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JsonMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>jsonMapper<span class="token punctuation">.</span><span class="token function">readTree</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"content"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">asText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/f/about" rel="external nofollow noreferrer">摩托</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://fengylf.github.io/f/f/2021/05/04/note/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/jackson/">https://fengylf.github.io/f/f/2021/05/04/note/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/jackson/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/f/about" target="_blank">摩托</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/f/tags/jackson/">
+                                    <span class="chip bg-color">jackson</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/f/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/f/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/f/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/f/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/f/2021/05/05/note/springboot%E6%BA%90%E7%A0%81/springboot%E4%B9%8Bweb%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6%E6%B3%A8%E5%86%8C/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/4.jpg" class="responsive-img" alt="springboot之web-Servlet三大组件注册">
+                        
+                        <span class="card-title">springboot之web-Servlet三大组件注册</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            注册原生三大组件
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/springboot/" class="post-category">
+                                    springboot
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/Servlet/">
+                        <span class="chip bg-color">Servlet</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/f/2021/05/02/note/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/swagger3.0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/19.jpg" class="responsive-img" alt="swagger3.0">
+                        
+                        <span class="card-title">swagger3.0</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/springboot/" class="post-category">
+                                    springboot
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/swagger/">
+                        <span class="chip bg-color">swagger</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/f/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/f/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/f/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/f/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/f/about" target="_blank">摩托</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">329.5k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1300379737@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1300379737" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1300379737" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/f/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/f/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/f/libs/materialize/materialize.min.js"></script>
+    <script src="/f/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/f/libs/aos/aos.js"></script>
+    <script src="/f/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/f/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/f/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/f/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/f/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/f/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

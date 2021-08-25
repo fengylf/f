@@ -1,0 +1,2210 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+	<meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="jvm5字节码与类加载, Hexo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>jvm5字节码与类加载 | Hexo</title>
+    <link rel="icon" type="image/png" href="/f/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/f/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/my.css">
+
+    <script src="/f/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/f/" class="waves-effect waves-light">
+                    
+                    <img src="/f/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/f/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/f/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">jvm5字节码与类加载</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/f/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/f/tags/jvm/">
+                                <span class="chip bg-color">jvm</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/f/categories/jvm/" class="post-category">
+                                jvm
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-04-25
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    14.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    51 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/f/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="—-class文件—"><a href="#—-class文件—" class="headerlink" title="—-class文件—"></a>—-class文件—</h3><h3 id="字节码文件里是什么？"><a href="#字节码文件里是什么？" class="headerlink" title="字节码文件里是什么？"></a><strong>字节码文件里是什么？</strong></h3><p>源代码经过编译器编译之后便会生成一个字节码文件，字节码是一种二进制的类 </p>
+<p>文件，它的内容是 JVM 的指令，而不像 C、C++ 经由编译器直接生成机器码</p>
+<h3 id="什么事字节码指令-byte-code-？"><a href="#什么事字节码指令-byte-code-？" class="headerlink" title="什么事字节码指令(byte code)？"></a><strong>什么事字节码指令(byte code)？</strong></h3><p>Java 虚拟机的指令由一个字节长度的、代表着某种特定操作含义的**操作码 </p>
+<p>(opcode)以及跟随其后的零至多个代表此操作所需参数的操作数(operand)所构 </p>
+<p>成。虚拟机中许多指令并不包含操作数，只有一个操作码</p>
+<h2 id="—Class-文件结构—"><a href="#—Class-文件结构—" class="headerlink" title="==—Class 文件结构—=="></a>==—Class 文件结构—==</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20201210171932730.png" alt="image-20201210171932730"></p>
+<ul>
+<li><p>Class 类的本质 </p>
+<p>任何一个 Class 文件都对应着唯一一个类或接口的定义信息，但反过来说， </p>
+<p>Class 文件实际上它并不一定以磁盘文件形式存在。==Class 文件是一组以 8 位字== </p>
+<p>==节为基础单位的二进制流==</p>
+</li>
+<li><p>Class 文件格式</p>
+<p>Class 的结构不像 XML 等描述语言，由于它没有任何分隔符号。所以在其 </p>
+<p>中的数据项，无论是字节顺序还是数量，都是被严格限定的，哪个字节代表什么 </p>
+<p>含义，长度是多少，先后顺序如何，都不允许改变 </p>
+<p>Class 文件格式采用一种类似于 C 语言结构体的方式进行数据存储，这种结 </p>
+<p>构中只有两种数据类型：==无符号数和表==</p>
+<ol>
+<li>无符号数属于基本的数据类型，以 u1、u2、u4、u8 来分别代表 1 个字节、 </li>
+</ol>
+<p>2 个字节、4 个字节、8 个字节的无符号数，无符号数可以用来描述数字、索 </p>
+<p>引引用、数量值或者按照 UTF-8 编码构成字符串值 </p>
+<ol start="2">
+<li>表是由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都 </li>
+</ol>
+<p>习惯性地以”_info”结尾。表用于描述有层次关系的复合结构的数据，整个 </p>
+<p>Class 文件本质上就是一张表。由于表没有固定长度，所以通常会在其前面 </p>
+<p>加上个数说明</p>
+</li>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>说明</th>
+<th>长度</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u4</td>
+<td>magic</td>
+<td>魔数,识别Class文件格式</td>
+<td>4个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>minor_version</td>
+<td>副版本号(小版本)</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>major_version</td>
+<td>主版本号(大版本)</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>constant_pool_count</td>
+<td>常量池计数器</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>cp_info</td>
+<td>constant_pool</td>
+<td>常量池表</td>
+<td>n个字节</td>
+<td>constant_pool_count-1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>access_flags</td>
+<td>访问标识</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>this_class</td>
+<td>类索引</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>super_class</td>
+<td>父类索引</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>interfaces_count</td>
+<td>接口计数器</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>interfaces</td>
+<td>接口索引集合</td>
+<td>2个字节</td>
+<td>interfaces_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>fields_count</td>
+<td>字段计数器</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>field_info</td>
+<td>fields</td>
+<td>字段表</td>
+<td>n个字节</td>
+<td>fields_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>methods_count</td>
+<td>方法计数器</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>method_info</td>
+<td>methods</td>
+<td>方法表</td>
+<td>n个字节</td>
+<td>methods_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>attributes_count</td>
+<td>属性计数器</td>
+<td>2个字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>attribute_info</td>
+<td>attributes</td>
+<td>属性表</td>
+<td>n个字节</td>
+<td>attributes_count</td>
+</tr>
+</tbody></table>
+<h4 id="1-魔数：Class-文件的标志"><a href="#1-魔数：Class-文件的标志" class="headerlink" title="1.魔数：Class 文件的标志"></a>1.魔数：Class 文件的标志</h4><p>Magic Number(魔数) </p>
+<ul>
+<li><p>每个 Class 文件开头的 4 个字节的无符号整数称为魔数(Magic Number) </p>
+</li>
+<li><p>它的唯一作用是确定这个文件是否为一个能被虚拟机接受的有效合法的 </p>
+</li>
+<li><p>魔数值固定为 0xCAFEBABE。不会改变 </p>
+</li>
+<li><p>如果一个 Class 文件不以 0xCAFEBABE 开头，虚拟机在进行文件校验的</p>
+<p>时候就会直接抛出以下错误：java.lang.ClassFormatError</p>
+</li>
+</ul>
+<h4 id="2-Class-文件版本号"><a href="#2-Class-文件版本号" class="headerlink" title="2.Class 文件版本号"></a>2.Class 文件版本号</h4><ul>
+<li>紧接着魔数的 4 个字节存储的是 Class 文件的版本号。同样也是 4 个字节。 </li>
+<li>第 5 个和第 6 个字节所代表的含义就是编译的副版本号 minor_version</li>
+<li>而第 7 个和第 8 个字节就是编译的主版本号 major_version </li>
+<li>它们共同构成了 Class 文件的格式版本号。譬如某个 Class 文件的主版本号 </li>
+</ul>
+<p>为 M，副版本号为 m，那么这个 Class 文件的格式版本号就确定为 M.m </p>
+<p>版本号和 Java 编译器的对应关系如下表：</p>
+<table>
+<thead>
+<tr>
+<th>主版本（十进制）</th>
+<th>副版本（十进制）</th>
+<th>编译器版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>45</td>
+<td>3</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>46</td>
+<td>0</td>
+<td>1.2</td>
+</tr>
+<tr>
+<td>47</td>
+<td>0</td>
+<td>1.3</td>
+</tr>
+<tr>
+<td>48</td>
+<td>0</td>
+<td>1.4</td>
+</tr>
+<tr>
+<td>49</td>
+<td>0</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>50</td>
+<td>0</td>
+<td>1.6</td>
+</tr>
+<tr>
+<td>51</td>
+<td>0</td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>52</td>
+<td>0</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>53</td>
+<td>0</td>
+<td>1.9</td>
+</tr>
+<tr>
+<td>54</td>
+<td>0</td>
+<td>1.10</td>
+</tr>
+<tr>
+<td>55</td>
+<td>0</td>
+<td>1.11</td>
+</tr>
+</tbody></table>
+<h4 id="3-常量池：存放所有常量"><a href="#3-常量池：存放所有常量" class="headerlink" title="3.常量池：存放所有常量"></a>3.常量池：存放所有常量</h4><ul>
+<li><p>常量池是 Class 文件中内容最为丰富的区域之一。常量池对于 Class 文件中的字段和方法解析也有着至关重要的作用 </p>
+</li>
+<li><p>随着 Java 虚拟机的不断发展，常量池的内容也日渐丰富，可以说，常量池是整个 Class 文件的基石</p>
+</li>
+<li><p>在版本号之后，紧跟着的是常量池的数量，以及若干个常量池表项 </p>
+</li>
+<li><p>常量池中常量的数量是不固定的，所以在常量池的入口需要放置一项 u2 类型的无符号数，代表常量池容量计数值(constant_pool_count)，与 Java 中语言习惯不一样的是，==这个容量计数是从 1 而不是 0 开始的==Class 文件使用了一个前置的容量计数器(constant_pool_count)加若 干个连续的数据项constant_pool)的形式来描述常量池内容，我们把这一系列连续常量池数据称为常量池集合 </p>
+</li>
+<li><p>常量池表项中，用于==存放编译时期生成的各种字面量和符号引用==，这部分内容将在类加载后进入方法区的运行时常量池中存放</p>
+</li>
+</ul>
+<p>3.1常量池计数器(constant_pool_count)</p>
+<p>由于常量池的数量不固定，时长时短，所以需要放置两个字节来表示常量池容量计数值 </p>
+<ul>
+<li>常量池容量计数值(u2 类型)：从 1 开始，表示常量池中有多少项常量。即 constant_pool_count = 1 表示常量池中有 0 个常量项</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">通常我们写代码时都是从 0 开始的，但是这里的常量池却是从 1 开始，因为 它把第 0 项常量空出来了。这是为了满足后面某些指向常量池的索引值的数据在 特定情况下需要表达&quot;不引用任何一个常量池项目&quot;的含义，这种情况可用索引值 0 来表示<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>3.2常量池表(constant_pool)</p>
+<ul>
+<li>constant_pool 是一种表结构，以 1 ~ constant_pool_count - 1 为索引。表明了后面有多少个常量项 </li>
+<li>常 量 池 主 要 存 放 两 大 类 常 量 ： 字 面 量 (Literal) 和 符 号 引 用 (Symbolic References) </li>
+<li>它包含了 Class 文件结构及其子结构中引用的所有字符串常量、类或接口名、字段名和其他常量。常量池中的每一项都具备相同的特征。第 1 个字节作为类型标记，用于确定该项的格式，这个字节称为 tag byte(标记字节、标签字节) </li>
+</ul>
+<p>几个概念</p>
+<blockquote>
+<p>字面量 (Literal):字符串,以及final修饰的常量;</p>
+<p>符号引用(Symbolic References):类与接口的全限定名,字段的名称和描述符,方法的名称和描述符;</p>
+<p><strong>全限定名</strong> :com/atguigu/test/Demo 这个就是类的全限定名，仅仅是把包的”.”替换成”/“，为了使连续的多个全限定名之间不产生混淆，在使用时最后一般会加入一个”;” 表示全限定名结束</p>
+<p><strong>简单名称</strong>:简单名称是指没有类型和参数修饰的方法或者字段名称，上面例子中的类的add() 方法和 num 字段的简单名称分别是 add 和 num</p>
+<p>描述符 :描述符的作用是用来描述<code>字段的数据类型</code>、<code>方法的参数列表</code>(包括数量、类 型以及顺序)和<code>返回值</code>。根据描述符规则，基本数据类型(byte、char、double、 float、int、long、short、boolean)以及代表无返回值的 void 类型都用一个大写字 符来表示，而对象类型则用字符 L 加对象的全限定名表示，详见下表</p>
+</blockquote>
+<h4 id="类型描述符"><a href="#类型描述符" class="headerlink" title="类型描述符"></a>类型描述符</h4><table>
+<thead>
+<tr>
+<th>标志符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B</td>
+<td>基本数据类型byte</td>
+</tr>
+<tr>
+<td>C</td>
+<td>基本数据类型char</td>
+</tr>
+<tr>
+<td>D</td>
+<td>基本数据类型double</td>
+</tr>
+<tr>
+<td>F</td>
+<td>基本数据类型float</td>
+</tr>
+<tr>
+<td>I</td>
+<td>基本数据类型int</td>
+</tr>
+<tr>
+<td>J</td>
+<td>基本数据类型long</td>
+</tr>
+<tr>
+<td>S</td>
+<td>基本数据类型short</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>基本数据类型boolean</td>
+</tr>
+<tr>
+<td>V</td>
+<td>代表void类型</td>
+</tr>
+<tr>
+<td>L</td>
+<td>对象类型，比如：<code>Ljava/lang/Object;</code></td>
+</tr>
+<tr>
+<td>[</td>
+<td>数组类型，代表一维数组。比如：<code>double[][][] is [[[D</code></td>
+</tr>
+</tbody></table>
+<h4 id="常量类型和结构"><a href="#常量类型和结构" class="headerlink" title="==常量类型和结构=="></a>==常量类型和结构==</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>标志(或标识)</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CONSTANT_utf8_info</td>
+<td>1</td>
+<td>UTF-8编码的字符串</td>
+</tr>
+<tr>
+<td>CONSTANT_Integer_info</td>
+<td>3</td>
+<td>整型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Float_info</td>
+<td>4</td>
+<td>浮点型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Long_info</td>
+<td>5</td>
+<td>长整型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Double_info</td>
+<td>6</td>
+<td>双精度浮点型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Class_info</td>
+<td>7</td>
+<td>类或接口的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_String_info</td>
+<td>8</td>
+<td>字符串类型字面量</td>
+</tr>
+<tr>
+<td>CONSTANT_Fieldref_info</td>
+<td>9</td>
+<td>字段的符号引用(细节,指向所属类或接口,指向nameandtype)</td>
+</tr>
+<tr>
+<td>CONSTANT_Methodref_info</td>
+<td>10</td>
+<td>类中方法的符号引用(细节,指向对应类索引,对应nameandtype索引)</td>
+</tr>
+<tr>
+<td>CONSTANT_InterfaceMethodref_info</td>
+<td>11</td>
+<td>接口中方法的符号引用</td>
+</tr>
+<tr>
+<td>CONSTANT_NameAndType_info</td>
+<td>12</td>
+<td>字段或方法的符号引用(细节1.表明方法名称,和方法形参与返回值;2.表明字段名称,字段类型.)</td>
+</tr>
+<tr>
+<td>CONSTANT_MethodHandle_info</td>
+<td>15</td>
+<td>表示方法句柄</td>
+</tr>
+<tr>
+<td>CONSTANT_MethodType_info</td>
+<td>16</td>
+<td>标志方法类型</td>
+</tr>
+<tr>
+<td>CONSTANT_InvokeDynamic_info</td>
+<td>18</td>
+<td>表示一个动态方法调用点</td>
+</tr>
+</tbody></table>
+<h4 id="常量类型和结构细节"><a href="#常量类型和结构细节" class="headerlink" title="常量类型和结构细节"></a>常量类型和结构细节</h4><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/1598773300484.png" alt="1598773300484"></p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/1598773308492.png" alt="1598773308492"></p>
+<blockquote>
+<p>虚拟机在加载 Class 文件时才会进行动态链接，也就是说，Class 文件中不会保存各个方法和字段的最终内存布局信息，因此，这些字段和方法的符号引用 不经过转换是无法直接被虚拟机使用的。当虚拟机运行时，需要从常量池中获得 对应的符号引用，再在==类加载过程中的解析阶段将其替换为直接引用，并翻译到 具体的内存地址中==。 </p>
+<p>这里说明下符号引用和直接引用的区别与关联：</p>
+<p>符号引用：符号引用以一组符号来描述所引用的目标，符号可以是任何形式 的字面量，只要使用时能无歧义地定位到目标即可。符号引用与虚拟机实现 的内存布局无关，引用的目标并不一定已经加载到内存中 </p>
+<p>直接引用：直接引用可以是直接指<strong>向目标的指针、相对偏移量或是一个能 间接定位到目标的句柄。直接引用是与虚拟机实现的内存布局相关的，</strong>同 一个符号引用在不同虚拟机实例上翻译出来的直接引用一般不会相同。如果有了直接引用，那说明引用的目标必定已经存在于内存之中了。</p>
+</blockquote>
+<h4 id="4-访问标识"><a href="#4-访问标识" class="headerlink" title="4.访问标识"></a>4.访问标识</h4><ul>
+<li>在常量池后，紧跟着访问标记。该标记使用两个字节表示，用于识别一些类或者接口层次的访问信息，包括：这个 Class 是类还是接口；是否定义为public 类型；是否定义为 abstract 类型；如果是类的话，是否被声明为 final 等。各种访问标记如下所示：</li>
+</ul>
+<p>访问标志</p>
+<table>
+<thead>
+<tr>
+<th>标志名称</th>
+<th>标志值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>标志为public类型,1</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>标志被声明为final，只有类可以设置,</td>
+</tr>
+<tr>
+<td>ACC_SUPER</td>
+<td>0x0020</td>
+<td>标志允许使用invokespecial字节码指令的新语义，JDK1.0.2之后编译出来的类的这个标志默认为真。（使用增强的方法调用父类方法）</td>
+</tr>
+<tr>
+<td>ACC_INTERFACE</td>
+<td>0x0200</td>
+<td>标志这是一个接口</td>
+</tr>
+<tr>
+<td>ACC_ABSTRACT</td>
+<td>0x0400</td>
+<td>是否为abstract类型，对于接口或者抽象类来说，次标志值为真，其他类型为假</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>标志此类并非由用户代码产生（即：由编译器产生的类，没有源码对应）</td>
+</tr>
+<tr>
+<td>ACC_ANNOTATION</td>
+<td>0x2000</td>
+<td>标志这是一个注解</td>
+</tr>
+<tr>
+<td>ACC_ENUM</td>
+<td>0x4000</td>
+<td>标志这是一个枚举</td>
+</tr>
+</tbody></table>
+<p>字段表访问标志</p>
+<table>
+<thead>
+<tr>
+<th>标志名称</th>
+<th>标志值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>字段是否为public</td>
+</tr>
+<tr>
+<td>ACC_PRIVATE</td>
+<td>0x0002</td>
+<td>字段是否为private</td>
+</tr>
+<tr>
+<td>ACC_PROTECTED</td>
+<td>0x0004</td>
+<td>字段是否为protected</td>
+</tr>
+<tr>
+<td>ACC_STATIC</td>
+<td>0x0008</td>
+<td>字段是否为static</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>字段是否为final</td>
+</tr>
+<tr>
+<td>ACC_VOLATILE</td>
+<td>0x0040</td>
+<td>字段是否为volatile</td>
+</tr>
+<tr>
+<td>ACC_TRANSTENT</td>
+<td>0x0080</td>
+<td>字段是否为transient</td>
+</tr>
+<tr>
+<td>ACC_SYNCHETIC</td>
+<td>0x1000</td>
+<td>字段是否为由编译器自动产生</td>
+</tr>
+<tr>
+<td>ACC_ENUM</td>
+<td>0x4000</td>
+<td>字段是否为enum</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ol>
+<li>带有 ACC_INTERFACE 标志的 Class 文件表示的是接口而不是类，反之则表示的是类而不是接口 </li>
+</ol>
+<p>\1. 如果一个 Class 文件被设置了 ACC_INTERFACE 标志，那么同时也得 设置 ACC_ABSTRACT 标志。同时它不能再设置 ACC_FINAL、 ACC_SUPER 或 ACC_ENUM 标志 </p>
+<p>\2. 如果没有设置 ACC_INTERFACE 标志，那么这个 Class 问价可以具有上表中除 ACC_ANNOTATION 外的其他所有标志。当然，ACC_FINAL 和 ACC_ABSTRACT 这类互斥的标志除外。这两个标志不能同时设置 </p>
+<ol start="2">
+<li>ACC_SUPER 标志用于确定类或接口里面的 invokespecial 指令使用的是哪一种执行语义。**针对 Java 虚拟机指令集的编译器都应当设置这个标志。 </li>
+</ol>
+<p>**对于 Java SE 8 及后续版本来说，无论 Class 文件中这个标志的实际值是 什么，也不管 Class 文件的版本 </p>
+<ol start="3">
+<li><p>ACC_SYNTHETIC 标志意味着该类或接口是由编译器生成的，而不是由源 代码生成的 </p>
+</li>
+<li><p>注 解 类 型 必 须 设 置 ACC_ANNOTATION 标 志 。 如 果 设 置 了 ACC_ANNOTATION 标志，那么也必须设置 ACC_INTERFACE 标志 </p>
+</li>
+<li><p>ACC_ENUM 标志标明该类或其父类为枚举类型 </p>
+</li>
+</ol>
+<p><strong>6)</strong> 表中没有使用的 access_flags 标志是为未来扩充而预留的，这些预留的标志 在编译器中应该设置为 0，Java 虚拟机实现也应该忽略他们</p>
+</blockquote>
+<h4 id="5．类索引、父类索引、接口索引集合"><a href="#5．类索引、父类索引、接口索引集合" class="headerlink" title="5．类索引、父类索引、接口索引集合"></a>5．类索引、父类索引、接口索引集合</h4><p>在访问标记后，会指定该类的类别、父类类别以及实现的接口;</p>
+<p>类索引、父类索引、接口索引</p>
+<table>
+<thead>
+<tr>
+<th>长度</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u2</td>
+<td>this_class</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>super_class</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>interfaces_count</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>interfaces[interfaces_count]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>这三项数据来确定这个==类的继承关系== </p>
+<ul>
+<li><p>类索引用于确定这个类的全限定名 </p>
+</li>
+<li><p>父类索引用于确定这个类的父类的全限定名。由于 Java 语言不允许多 重继承，所以父类索引只有一个，除了 java.lang.Object 之外，所有的 Java 类都有父类，因此除了 java.lang.Object 外，所有 Java 类的父类索 引都不为 0 </p>
+</li>
+<li><p>接口索引集合就用来描述这个类实现了哪些接口，这些被实现的接口将按 implements 语句(如果这个类本身是一个接口，则应当是 extends 语 句)后的接口顺序从左到右排列在接口索引集合中</p>
+</li>
+</ul>
+</blockquote>
+<p>5.1 ==this_class(类索引)== </p>
+<p>2 字 节 无符 号 整 数， 指 向 常量 池 的 索引 。 它 提供 了 类 的全 限 定 名， 如 com/atguigu/java1/Demo。this_class 的值必须是对常量池表中某项的一个有效索引值。常量池在这个索引处的成员必须为 CONSTANT_Class_info 类型结构体， 该结构体表示这个 Class 文件所定义的类或接口</p>
+<p>5.2 ==super_class(父类索引)==</p>
+<p>2 字节无符号整数，指向常量池的索引。它提供了当前类的父类的全限定名。 如果我们没有继承任何类，其默认继承的是 java/lang/Object 类。同时，由 于 Java 不支持多继承，所以其父类只有一个.superclass 指向的父类不能是 final</p>
+<p>5.3 interfaces</p>
+<p> ==interfaces_count(接口计数器)== </p>
+<p>interfaces_count 项的值表示当前类或接口的直接超接口数量 </p>
+<p> ==interface[] (接口索引集合)== </p>
+<p>interfaces[] 中每个成员的值必须是对常量池表中某项的有效索引值，它的长 度为 interfaces_count。每个成员 interfaces[i] 必须为 CONSTANT_Class_info 结 构，其中 0 &lt;= i &lt; interfaces_count。在 interfaces[] 中，各成员所表示的接口顺 序和对应的源代码中给定的接口顺序(从左至右)一样，即 interfaces[0] 对应的是 源代码中最左边的接口.</p>
+<h4 id="6．字段表集合"><a href="#6．字段表集合" class="headerlink" title="6．字段表集合"></a>6．字段表集合</h4><ul>
+<li>用于==描述接口或类中声明的变量==。字段(field)包括类级变量以及实例级变量， 但是不包括方法内部、代码块内部声明的局部变量 </li>
+<li>字段叫什么名字、字段被定义为什么数据类型，这些都是无法固定的，只能引用常量池中的常量来描述 </li>
+<li> 它指向常量池索引集合，它描述了每个字段的完整信息。比如字段的标识 符、访问修饰符(public、private 或 protected)、是类变量还是实例变量(static 修饰符)、是否是常量(final 修饰符)等。</li>
+</ul>
+<blockquote>
+<ol>
+<li>字段表集合中==不会列出从父类或者实现的接口中继承而来的字段==，但有 可能列出原 Java 代码中不存在的字段，譬如在内部类中为了保持对外 部类的方文星，会自动添加指向外部类实例的字段;</li>
+<li>在 Java 语言中字段是无法重载的，两个字段的数据类型、修饰符不管是否相同，都必须使用不一样的名称，但是对于字节码来讲，如果两个字段的描述符不一致，那字段重名就是合法的</li>
+</ol>
+</blockquote>
+<p>6.1 字段计数器</p>
+<p>fields_count 的值表示当前 Class 文件 fields 表的成员个数。使用两个字节 来表示.fields 表中每个成员都是一个 field_info 结构，用于表示该类或接口所声明 的所有类字段或者实例字段，不包括方法内部声明的变量，也不包括从父类或父 接口继承的那些字段.</p>
+<p>6.2 字段表</p>
+<p>fields 表中的每个成员都必须是一个 fields_info 结构的数据项，用于表示当 前类或接口中某个字段的完整描述 一个字段的信息包括如下这些信息，这些信息中，各个修饰符都是布尔值，要么 有，要么没有.</p>
+<p>字段表结构</p>
+<p><img src="img/image-20201210175415999.png" alt="image-20201210175415999"></p>
+<p>属性表集合 </p>
+<p>一个字段还可能拥有一些属性，用于存储更多的额外信息。比如==初始化值==、 ==一些注释信息==等。属性个数存放在 attribute_count 中，属性具体内容存放在 attributes 数组中</p>
+<p>属性的通用格式</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>数量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u2</td>
+<td>attribute_name_index</td>
+<td>1</td>
+<td>属性名索引</td>
+</tr>
+<tr>
+<td>u4</td>
+<td>attribute_length</td>
+<td>1</td>
+<td>属性长度</td>
+</tr>
+<tr>
+<td>u1</td>
+<td>info</td>
+<td>attribute_length</td>
+<td>属性表</td>
+</tr>
+</tbody></table>
+<h4 id="7．方法表集合"><a href="#7．方法表集合" class="headerlink" title="7．方法表集合"></a>7．方法表集合</h4><p>methods: 指向常量池索引集合，它完整描述了每个方法的签名 </p>
+<ul>
+<li>在字节码文件中，每一个 method_info 项都对应着一个类或者接口中的方法 信息。比如方法的访问修饰符(public、private 或 protected)，方法的返回值 类型以及方法的参数信息等 </li>
+<li> 如果这个方法不是抽象的或者不是 native 的，那么字节码中会体现出来 </li>
+<li> 一方面，methods 表只描述当前类或接口中声明的方法，不包括从父类或父 接口继承的方法。另一方面，methods 表有可能会出现由编译器自动添加的 方法，最典型的便是编译器产生的方法信息(比如：类(接口)初始化方法 () 和 实例初始化方法 ()</li>
+</ul>
+<p>7.1<strong>方法计数器</strong> </p>
+<p>methods_count 的值表示当前 Class 文件 methods 表的成员个数，使用两个 字节来表示,methods 表中每个成员都是一个 method_info 结构</p>
+<p>7.2<strong>方法表</strong></p>
+<ul>
+<li>method表中的每个成员都必须是一个 method_info 结构，用于表示当前类 或接口中某个方法的完整描述。如果某个 method_info 结构的 access_flags 项既没有设置 ACC_NATIVE 标志也没有设置 ACC_ABSTRACT 标志，那 么该结构中也应包含实现这个方法所有的 Java 虚拟机指令</li>
+<li>method_info 结构可以表示类和接口中定义的所有方法，包括实例方法、类 方法、实例初始化方法和类或接口初始化方法 </li>
+<li> 方法表的结构实际跟字段表是一样的，方法表结构如下</li>
+</ul>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20201210175415999.png" alt="image-20201210175415999"></p>
+<h4 id="8-属性表集合"><a href="#8-属性表集合" class="headerlink" title="8.属性表集合"></a>8.属性表集合</h4><p>​    方法表集合之后的属性表集合，指的是 ==Class 文件所携带的辅助信息==，比如 该 Class 文件的源文件的名称。以及任何带有 RetentionPolicy.CLASS 或者 RetentionPolicy.RUNTIME 的注解。这类信息通常被用于 Java 虚拟机的验证和 运行，以及 Java 程序的调试，一般无需深入了解 </p>
+<p>​    此外，==字段表、方法表都可以有自己的属性表。用于描述某些场景专有的信 息== </p>
+<p>​    属性表集合的限制没有那么严格，不再要求各个属性表具有严格的顺序，并 且只要不与已有的属性名重复，任何人实现的编译器都可以向属性表中写入自己 定义的属性信息，但 Java 虚拟机运行时会忽略掉它不认识的属性 </p>
+<p>8.1属性计数器</p>
+<p>8.2属性表</p>
+<p>​    属性表的每个项的值必须是 attribute_info 结构。属性表的结构比较灵活，各种 不同的属性只要满足以下结构即可</p>
+<p><strong>属性的通用格式</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>数量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u2</td>
+<td>attribute_name_index</td>
+<td>1</td>
+<td>属性名索引</td>
+</tr>
+<tr>
+<td>u4</td>
+<td>attribute_length</td>
+<td>1</td>
+<td>属性长度</td>
+</tr>
+<tr>
+<td>u1</td>
+<td>info</td>
+<td>attribute_length</td>
+<td>属性表</td>
+</tr>
+</tbody></table>
+<h3 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h3><p>一般常用的是 -v -l -c 三个选项 </p>
+<ul>
+<li><p>javap -l 会输出行号和本地变量表信息 </p>
+</li>
+<li><p>javap -c 会对当前 Class 字节码进行反编译生成汇编代码 </p>
+</li>
+<li><p>javap -v classxx 除了包含 -c 内容外，还会输出行号、局部变量表信息、常 量池等信息</p>
+</li>
+</ul>
+<h3 id="—-三-字节码指令集与解析-—"><a href="#—-三-字节码指令集与解析-—" class="headerlink" title="—==三.字节码指令集与解析==—"></a>—==三.字节码指令集与解析==—</h3><p>​    Java 虚拟机的指令由一个字节长度的、代表着某种特定操作含义的数字 (称为操作码，Opcode)以及跟随其后的零至多个代表此操作所需参数(称 为操作数，Operands)而构成，由于 Java 虚拟机采用面向操作数栈而不 是寄存器的结构，所以大多数的指令都不包含操作数，只有一个操作码</p>
+<p>​    由于限制了 Java 虚拟机操作码的长度为一个字节(即 0~255)，这意味着 指令集的操作码总数不可能超过 256 条</p>
+<h3 id="字节码与数据类型"><a href="#字节码与数据类型" class="headerlink" title="字节码与数据类型"></a><strong>字节码与数据类型</strong></h3><p>大部分情况,根据操作码助记符,可以看出专门操作哪种数据类型;</p>
+<p>i 代表对 int 类型的数据操作 ; l 代表 long ; s 代表 short ; b 代表 byte ; c 代表 char ;</p>
+<p> f 代表 float ; d 代表 double</p>
+<blockquote>
+<p>大部分的指令都没有支持整数类型 byte、char 和 short，甚至没有任何指令支持 boolean 类型。编译器会在编译器或运行期将 byte 和 short 类型的数据带 符号扩展(Sign-Extend)为==相应的 int 类型数据==，将 boolean 和 char 类型数据零位扩展(Zero-Extend)为相应的 int 类型数据。与之类似，在处理 boolean、byte、 short 和 char 类型的数组时，也会转换为使用对应的 init 类型的字节码指令来 处理。因此，大多数对于 boolean、byte、short 和 char 类型数据的操作，实际 上都是使用相应的 int 类型作为运算类型;</p>
+</blockquote>
+<h3 id="3-1-加载与存储指令"><a href="#3-1-加载与存储指令" class="headerlink" title="3.1 加载与存储指令"></a>3.1 <strong>加载与存储指令</strong></h3><ul>
+<li>作用:加载和存储指令用于将数据从栈帧的==局部变量表和操作数栈==之间来回传递</li>
+</ul>
+<blockquote>
+<p>xload :将局部变量压入操作数栈;</p>
+</blockquote>
+<p>常用指令</p>
+<ul>
+<li>「<code>局部变量压栈指令</code>」将一个局部变量加载到操作数栈：xload、xload_<n> (其中 x 为 i、l、f、d、a，n 为 0 到 3)；xaload、xaload<n> (其 x 为 i、 l、f、d、a、b、c、s，n 为 0 到 3)</li>
+<li>「<code>常量入栈指令</code>」将一个常量加载到操作数栈：bipush、sipush、ldc、ldc_w、 ldc2_w、aconst_null、iconst_m1、iconst_<i>、iconst_<l>、fconst_<f>、 dconst_<d></li>
+<li>「<code>出栈装入局部变量表指令</code>」将一个数值从操作数栈存储到局部变量表： xstore、xstore_<n>(其中 x 为 i、l、f、d、a，n 为 0 到 3); xastore(其 中 x 为 i、l、f、d、a、b、c、s)</li>
+<li>扩充局部变量表的访问索引的指令：wide</li>
+</ul>
+<blockquote>
+<p>上面所列举的指令助记符中，有一部分是以尖括号结尾的(例如 iload_<n>)。这几组指令都是某个带有一个操作数的通用指令 (例如 iload)的特殊形式，对于这若干组特殊指令来说，它们表面上没有操作数， 不需要进行取操作数的动作，但操作数都隐含在指令中.</p>
+<p>除此之外，它们的语义与原生的通用指令完全一致(例如 iload_0 的语义与操 作数为 0 时的 iload 指令语义完全一致)。在尖括号之间的字母指定了指令隐含操 作数的数据类型，<n>代表非负的整数，<i>代表是 int 类型数据，<l>代表 long 类型，<f>代表 float 类型，<d>代表 double 类型</p>
+</blockquote>
+<p>==操作数栈==:</p>
+<blockquote>
+<p>在解释执行过程中，每当为 Java 方法分配栈帧时，Java 虚拟机往往需要开 辟一块额外的空间作为操作数栈，来存放计算的操作数以及返回结果.</p>
+<p>具体来说便是：执行每一条指令之前，Java 虚拟机要求该指令的操作数已被 压入操作数栈中。在执行指令时，Java 虚拟机会将该指令所需的操作数弹出， 并且将指令的结果重新压入栈中</p>
+</blockquote>
+<p>==局部变量表(Local Variables)==</p>
+<blockquote>
+<p>Java 方法栈帧的另外一个重要组成部分则是局部变量区，字节码程序可以将计算的结果缓存在局部变量区之中实际上，Java 虚拟机将局部变量区当成一个数组，依次存放 this 指针(仅非 静态方法)，所传入的参数，以及字节码中的局部变量。 和操作数栈一样，long 类型以及 double 类型的值将占据两个单元，其余类 型仅占据一个单元 </p>
+</blockquote>
+<h4 id="3-1-1局部变量压栈指令"><a href="#3-1-1局部变量压栈指令" class="headerlink" title="==3.1.1局部变量压栈指令=="></a>==3.1.1局部变量压栈指令==</h4><p>局部变量压栈指令将给定的局部变量表中的数据压入操作数栈;</p>
+<p>这类指令大体可以分为： </p>
+<p> xload_<n>(x 为 i、l、f、d、a，n 为 0 到 3) </p>
+<p> xload(x 为 i、l、f、d、a) </p>
+<p>说明：在这里，x 的取值表示数据类型 </p>
+<p>指令 xload_n 表示将第 n 个局部变量压入操作数栈，比如 iload_1、fload_0、 aload_0 等指令。其中 aload_n 表示将一个对象引用压栈 指令 xload 通过指定参数的形式，把局部变量压入操作数栈，当使用这个命 令时，表示局部变量的数量可能超过了 4 个，比如指令 iload、fload 等.</p>
+<h4 id="3-1-2-常量入栈指令"><a href="#3-1-2-常量入栈指令" class="headerlink" title="==3.1.2 常量入栈指令=="></a>==3.1.2 常量入栈指令==</h4><p>常量入栈指令的功能是将常数压入操作数栈，根据数据类型和入栈内容的不同,又可以分为 const 系列、push 系列和 ldc 指令;</p>
+<blockquote>
+<p><strong>指令 ldc 系列：</strong>如果以上指令都不能满足需求，那么可以使用万能的ldc 指令，它可以接收一个 8 位的参数，该参数指向常量池中的 int、float 或者 String 的索引，将指定的内容压入堆栈 </p>
+<p>类似的还有 ldc_w，它接收两个 8 位参数，能支持的索引范围大于 ldc 如果要压入的元素是 long 或者 double 类型的，则使用 ldc2_w 指令，使 用方式都是类似的</p>
+</blockquote>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20201211145350168.png" alt="image-20201211145350168"></p>
+<h4 id="3-1-3-出栈装入局部变量表指令"><a href="#3-1-3-出栈装入局部变量表指令" class="headerlink" title="==3.1.3 出栈装入局部变量表指令=="></a>==3.1.3 出栈装入局部变量表指令==</h4><p>出栈装入局部变量表指令用于将操作数栈中栈顶元素弹出后，装入局部变量 表的指定位置，用于给局部变量赋值 ;</p>
+<p>这类指令主要以 store 的形式存在，比如 xstore (x 为 i、l、f、d、a)、xstore_n(x 为 i、l、f、d、a，n 为 0 至 3,n是局部变量索引)和 xasture(x 为 i、l、f、d、a、b、c、s);</p>
+<h3 id="3-2-算术指令"><a href="#3-2-算术指令" class="headerlink" title="3.2 算术指令"></a>3.2 算术指令</h3><p>算术指令用于对两个操作数栈上的值进行某种特定运算，并把结果重新压入操作数栈;</p>
+<pre class="line-numbers language-none"><code class="language-none">所有算术指令包括： 
+ 加法指令：iadd、ladd、fadd、dadd 
+ 减法指令：isub、lsub、fsub、dsub 
+ 乘法指令：imul、lmul、fmul、dmul 
+ 除法指令：idiv、ldiv、fdiv、ddiv 
+ 求余指令：irem、lrem、frem、drem(remainder：余数) 
+ 取反指令：ineg、lneg、fneg、dneg(negation：取反) 
+ 自增指令：iinc 
+ 位运算指令，又可分为：  位移指令：ishl、ishr、iushr、lshl、lshr、lushr  按位或指令：ior、lor  按位与指令：iand、land  按位异或指令：ixor、lxor
+比较指令：dcmpg、dcmlp、fcmpg、fcmpl、lcmp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="前自增-后自增"><a href="#前自增-后自增" class="headerlink" title="==前自增,后自增=="></a>==前自增,后自增==</h3><blockquote>
+<p>i++    先将i装入操作数栈,本地变量表再自增;</p>
+<p>++i    本地变量表先自增,再将自增后的i装入操作数栈;</p>
+</blockquote>
+<h2 id="—-类加载过程详解—"><a href="#—-类加载过程详解—" class="headerlink" title="==—-类加载过程详解—=="></a>==—-类加载过程详解—==</h2><p>在 Java 中数据类型分为基本数据类型和引用数据类型。基本数据类型由虚 拟机预先定义，引用数据类型则需要进行类的加载</p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20201214161452037.png" alt="image-20201214161452037"></p>
+<h3 id="1-Loading-加载阶段"><a href="#1-Loading-加载阶段" class="headerlink" title="1.Loading,加载阶段"></a>1.Loading,加载阶段</h3><p>1.1 <strong>加载完成的操作</strong></p>
+<p>​    所谓加载，简而言之就是将 Java 类的字节码文件加载到机器内存中，并在 ==内存中构建出 Java 类的原型——类模板对象==。**所谓类模板对象，其实就是 Java 类在 JVM 内存中的一个快照，JVM 将从字节码文件中解析出的常量池、 类字段、类方法等信息存储到模板中，这样 JVM 在运行期便能通过类模板而获 取 Java 类中的任意信息，能够对 Java 类的成员变量进行遍历，也能进行 Java 方法的调用 </p>
+<p>​    反射的机制即基于这一基础。如果 JVM 没有将 Java 类的声明信息存储起 来，则 JVM 在运行期也无法反射.</p>
+<p>​    加载阶段，简言之，查找并加载类的二进制数据，生成 Class 的实例 </p>
+<p>在加载类时，Java 虚拟机必须完成以下 3 件事情： </p>
+<ul>
+<li>通过类的全名，获取类的二进制数据流</li>
+<li>解析类的二进制数据流为方法区内的数据结构(Java 类模型) </li>
+<li>创建 java.lang.Class 类的实例，表示该类型。作为方法区这个类的各种数据的访问入口</li>
+</ul>
+<p>1.2 <strong>类模型与</strong> <strong>Class</strong> <strong>实例的位置</strong></p>
+<p>==类模型的位置==</p>
+<p>加载的类在 JVM 中创建相应的类结构，类结构会存储在方法区(JDK 1.8 之 前：永久代；JDK 1.8 之后：元空间)</p>
+<p>==Class 实例的位置==</p>
+<p>类将 .class 文件加载至元空间后，会在==堆中创建一个 java.lang.Class 对象==，用来封装类位于方法区内的数据结构，该 Class 对象是在加载类的过程中创建 的，每个类都对应有一个 Class 类型的对象</p>
+<p>Class 类的构造方法是私有的，只有 JVM 能够创建 </p>
+<p>java.lang.Class 实例是访问类型元数据的接口，也是实现反射的关键数据、入口。通过 Class 类提供的接口，可以获得目标类所关联的 .class 文件中具体的数据 结构：方法、字段等信息</p>
+<h3 id="2-Linking-链接-阶段"><a href="#2-Linking-链接-阶段" class="headerlink" title="2.Linking(链接)阶段"></a>2.Linking(链接)阶段</h3><h3 id="2-1-Verification-验证"><a href="#2-1-Verification-验证" class="headerlink" title="2.1 Verification (验证)"></a>2.1 Verification (验证)</h3><p>​    当类加载到系统后，就开始链接操作，验证是链接操作的第一步 ,它的目的是保证加载的字节码是合法、合理并符合规范的 .</p>
+<p>​    验证的步骤比较复杂，实际要验证的项目也很繁多，大体上 Java 虚拟机需 要做以下检查，如图所示</p>
+<p><strong>整体说明：</strong> </p>
+<p>验证的内容则涵盖了类数据信息的格式验证、语义检查、字节码验证，以及 符号引用验证等 </p>
+<ul>
+<li><p>其中格式验证会和加载阶段一起执行。验证通过之后，类加载器才会成功将 类的二进制数据信息加载到方法区中 </p>
+</li>
+<li><p>格式验证之外的验证操作将会在方法区中进行 链接阶段的验证虽然拖慢了加载速度，但是它避免了在字节码运行时还需要 进行各种检查 .</p>
+</li>
+</ul>
+<p>具体如下:</p>
+<p>==1.格式验证==：是否以魔数 0xCAFEBABE 开头，主版本和副版本号是否在当前 Java 虚拟机的支持范围内，数据中每一个项是否都拥有正确的长度等.</p>
+<p>2.Java 虚拟机会进行字节码的==语义检查==，但凡在语义上不符合规范的，虚拟机 也不会给予验证通过。比如：</p>
+<ul>
+<li>是否所有的类都有父类的存在(在 Java 里，除了 Object 外，其他类都应该有父类)</li>
+<li>是否一些被定义为 final 的方法或者类被重写或继承了</li>
+<li>非抽象类是否实现了所有抽象方法或者接口方法 </li>
+<li>是否存在不兼容的方法(比如方法的签名除了返回值不同，其他都一样，这种方法会让虚拟机无从下手调度；absract 情况下的方法，就不能是 final 的了)</li>
+</ul>
+<p>3.Java 虚拟机还会进行==字节码验证==，字节码验证也是验证过程中最为复杂的一 个过程。它试图通过对字节码流的分析，判断字节码是否可以被正确地执行。 比如：</p>
+<ul>
+<li>在字节码的执行过程中，是否会跳转到一条不存在的指令</li>
+<li>函数的调用是否传递了正确类型的参数</li>
+<li>变量的赋值是不是给了正确的数据类型等</li>
+</ul>
+<p>栈映射帧(StackMapTable)就是在这个阶段，用于检测在特定的字节码处，其 ==局部变量表和操作数栈是否有着正确的数据类型==。但遗憾的是，100%准确地判 断一段字节码是否可以被安全执行是无法实现的，因此，该过程只是尽可能地检 查出可以预知的明显的问题。如果在这个阶段无法通过检查，虚拟机也不会正确 装载这个类。但是，如果通过了这个阶段的检查，也不能说明这个类是完全没有 问题的.</p>
+<p>在前面 3 次检查中，已经排除了文件格式错误、语义错误以及字节码的不正 确性。但是依然不能确保类是没有问题的</p>
+<p>4.校验器还将进行==符号引用的验证==。Class 文件在其常量池会通过字符串记录 自己将要使用的其他类或者方法。因此，在验证阶段，虚拟机就会检查这些 类或者方法确实是存在的，并且当前类有权限访问这些数据，如果一个需要 使用类无法在系统中找到，则会抛出 NoClassDefFoundError，如果一个方法 无法被找到，则会抛出 NoSuchMethdError </p>
+<p>==此阶段在解析环节才会执行==</p>
+<h3 id="2-2Preparation-准备"><a href="#2-2Preparation-准备" class="headerlink" title="2.2Preparation (准备)"></a>2.2Preparation (准备)</h3><p>准备阶段(Preparation)，简言之，==为类的静态变量分配内存，并将其初始化为 默认值.==</p>
+<p>当一个类验证通过时，虚拟机就会进入准备阶段。在这个阶段，虚拟机就会 为这个类分配相应的内存空间，并设置默认初始值。Java 虚拟机为各类型变量 默认的初始值如表所示：</p>
+<p>注意：==Java 并不支持 boolean 类型，对于 boolean 类型，内部实现是 int==，由于 int 的默认值是 0，故对应的，boolean 的默认值就是 false</p>
+<ul>
+<li>这里不包含基本数据类型的字段用 static final 修饰的情况，因为 ==final 在编译的时候就会分配==了，准备阶段会显式赋值</li>
+<li>注意这里不会为实例变量分配初始化，类变量会分配在方法区中，而实例变量是会随着对象一起分配到 Java 堆中</li>
+<li>在这个阶段不会像初始化阶段中那样会有初始化或者代码被执行</li>
+</ul>
+<h3 id="2-3Resolution-解析"><a href="#2-3Resolution-解析" class="headerlink" title="2.3Resolution (解析)"></a>2.3Resolution (解析)</h3><p>在准备阶段(Resolution)，简言之，==将类、接口、字段和方法的符号引用转为直接引用==</p>
+<p>​    ==符号引用就是一些字面量的引用，和虚拟机的内部数据结构和内存分布无关。==比较容理解的就是在 Class 类文件中，通过常量池进行了大量的符号引用。但 是在程序实际运行时，只有符号引用是不够的，比如当如下 println() 方法被调 用时，系统需要明确知道该方法的位置.</p>
+<p>​    以方法为例，Java 虚拟机为==每个类都准备了一张方法表==，将其所有的方法都 列在表中，当需要调用一个类的方法的时候，只要知道这个方法在方法表中的偏 移量就可以直接调用该方法。通过解析操作，符号引用就可以转变为目标方法在 类中方法表中的位置，从而使得方法被成功调用</p>
+<p>​    再来看一下 CONSTANT_String 的解析。由于字符串在程序开发中有 着重要的作用，因此，读者有必要了解一下 String 在 Java 虚拟机中的处理。 当在 Java 代码中直接使用字符串常量时，就会在类中出现 CONSTANT_String， 它表示字符串常量，并且会引用一个 CONSTANT_UTF8 的常量项。在 Java 虚 拟机内部运行中的常量池，会维护一张字符串拘留表(intern)，它会保存所有出现 过的字符串常量，并且没有重复项。只要以 CONSTANT_String 形式出现的字 符串也都会在这张表中。使用 String.intern() 方法可以得到一个字符串在拘留表 中的引用，因为该表中没有重复项，所以任何字面相同的字符串的 String.intern() 方法返回总是相等的 </p>
+<h3 id="3-Initialization-初始化-阶段"><a href="#3-Initialization-初始化-阶段" class="headerlink" title="==3.Initialization(初始化)阶段=="></a>==3.Initialization(初始化)阶段==</h3><p>初始化阶段，简言之，==为类的静态变量赋予正确的初始值==</p>
+<p>​    类的初始化是类装载的最后一个阶段。如果前面的步骤都没有问题，那么表 示类可以顺利装载到系统中。此时，类才会开始执行 Java 字节码。(即：到了初始化阶段，才真正开始执行类中定义的 Java 程序代码)</p>
+<p>​    初始化阶段的重要工作是==执行类的初始化方法：<clinit>() 方法== </p>
+<ul>
+<li><p>该方法仅能由 Java 编译器生成并由 JVM 调用，程序开发者无法自定义一个同名的方法，更无法直接在 Java 程序中调用该方法，虽然该方法也是由 字节码指令所组成 </p>
+</li>
+<li><p>它是类静态成员的赋值语句以及 static 语句块合并产生的 </p>
+</li>
+</ul>
+<p>说明</p>
+<ul>
+<li>在加载一个类之前，虚拟机总是==会试图先加载该类的父类==，因此父类的 总是 在子类 之前被调用，也就是说，父类的 static 块优先级高于子类.</li>
+<li>Java 编译器并不会为所有的类都产生 <clinit>() 初始化方法。哪些类在编译为字节 码后，字节码文件中将不会包含 <clinit>() 方法？<ul>
+<li>一个类中并没有声明任何的类变量，也没有静态代码块时</li>
+<li>一个类中声明类变量，但是没有明确使用类变量的初始化语句以及静态代码块来执行初始化操作时; public static int num1;</li>
+<li>一个类中包含 static final 修饰的基本数据类型的字段，这些类字段初始化语句采用编译时常量表达式; public static final int num2 = 1;</li>
+</ul>
+</li>
+</ul>
+<p>==<strong>使用 static + final 修饰的字段的显式赋值的操作，到底是在哪个阶段进行的赋值？</strong>==</p>
+<blockquote>
+<p>A 在链接阶段的准备环节赋值的情况：(字面量的基本数据类型和字面量的String)</p>
+<ul>
+<li>对于基本数据类型的字段来说，如果使用 static final 修饰，则显式赋值(直 接赋值常量，而非调用方法)通常是在链接阶段的准备环节进行</li>
+<li>对于 String 来说，如果使用字面量的方式赋值，使用 static final 修饰的 话，则显式赋值通常是在链接阶段的准备环节进行 </li>
+</ul>
+<p>B 在初始化阶段<clinit>()中赋值的情况</p>
+<ul>
+<li>排除上述的在准备环节赋值的情况之外的情况</li>
+</ul>
+<p>最终结论：使用 static + final 修饰，且显示赋值中==不涉及到方法或构造器调用==的基本数据类型或 String 类型的显式赋值，是在链接阶段的准备环节进行</p>
+</blockquote>
+<p>==<strong>(clinit) 的线程安全性</strong>==</p>
+<p>​    对于(clinit)方法的调用，也就是类的初始化，虚拟机会在内部确保其多线程环境中的安全性</p>
+<p>​    虚拟机会保证一个类的(clinit) 方法在多线程环境中被正确地加锁、同步，如果多个线程同时去初始化一个类，那么只会有一个线程去执行这个类的(clinit)方法， 其他线程都需要阻塞等待，直到活动线程执行 () 方法完毕 </p>
+<p>​    正是因为==函数(clinit)带锁线程安全的，因此，如果一个在类的(clinit)方法中有耗时 很长的操作，就可能造成多个线程阻塞，引发死锁。==并且这种死锁是很难发现的，因为看起来它们并没有可用的锁信息 </p>
+<p>​    如果之前的线程成功加载了类，则等在队列中的线程就没有机会再执行(clinit)方法了。那么，当需要使用这个类时，虚拟机会直接返回给它已经准备好的信息</p>
+<h3 id="类的初始化情况：主动使用-vs-被动使用"><a href="#类的初始化情况：主动使用-vs-被动使用" class="headerlink" title="==类的初始化情况：主动使用 vs 被动使用=="></a>==<strong>类的初始化情况：主动使用</strong> <strong>vs</strong> <strong>被动使用</strong>==</h3><p><strong>一、主动使用</strong> </p>
+<p>​    Class 只有在必须要首次使用的时候才会被装载，Java 虚拟机不会无条件地 装载 Class 类型。==Java 虚拟机规定，一个类或接口在初次使用前，必须要进行clinit初始化。这里指的”使用”，是指主动使用==，主动使用只有下列几种情况：(即： 如果出现如下的情况，则会对类进行初始化操作。而初始化操作之前的加载、验 证、准备已经完成)</p>
+<ol>
+<li><p>当创建一个类的实例时，比如使用 new 关键字，或者通过反射、克隆、反序列化 </p>
+</li>
+<li><p>当调用类的静态方法时，即当使用了字节码 invokestatic 指令 </p>
+</li>
+<li><p>当使用类、接口的静态字段时(final 修饰特殊考虑)，比如，使用 getstatic 或 者 putsttic 指令。(对应访问变量、赋值变量操作) </p>
+</li>
+<li><p>当 使 用 java.lang.reflect 包 中 的 方 法 反 射 类 的 方 法 时 。 比 如 ：Class.forname(“com.atguigu.java.Test”) </p>
+</li>
+<li><p>当初始化子类时，如果发现其分类还没有进行过初始化，则需要先触发其父 类的初始化 </p>
+</li>
+<li><p>如果一个接口定义了 default 方法，那么直接实现或者间接实现该接口的类的初始化，该接口要在其之前被初始化 </p>
+</li>
+<li><p>当虚拟机启动时，用户需要指定一个要执行的主类(包含 main() 方法的那个 类)，虚拟机会先初始化这个主类 </p>
+</li>
+<li><p>当初次调用 MethodHandle 实例时，初始化该 MethodHandle 指向的方法所在的类。(涉及解析 REF_getStatic、REF_putStatic、REF_invokeStatic 方法句柄对应的类) </p>
+</li>
+</ol>
+<p>针对 5，补充说明： </p>
+<p>当 Java 虚拟机初始化一个类时，要求它的所有父类都已经被初始化，但是 这条规则并不适用于接口 </p>
+<ul>
+<li><p>在初始化一个类时，并不会先初始化它所实现的接口 </p>
+</li>
+<li><p>在初始化一个接口时，并不会先初始化它的父接口 </p>
+</li>
+</ul>
+<p>因此，一个父接口并不会因为它的子接口或者实现类的初始化而初始化，只 有当程序首次使用特定接口的静态字段时，才会导致该接口的初始化 </p>
+<p>针对 7，说明： </p>
+<p>JVM 启动的时候通过引导类加载器加载一个初始类。这个类在调用 public static void main(String[]) 方法之前被链接和初始化。这个方法的执行将依次导致 所需的类的加载、链接和初始化</p>
+<p><strong>二、被动使用</strong> </p>
+<p>除了以上的情况属于主动使用，其他的情况均属于被动使用。被动使用不会引起类的初始化 </p>
+<p>也就是说：并不是在代码中出现的类，就一定会被加载或者初始化。如果不 符合主动使用的条件，类就不会初始化 </p>
+<ol>
+<li>当访问一个静态字段时，只有真正声明这个字段的类才会被初始化 </li>
+</ol>
+<ul>
+<li>==当通过子类引用父类的静态变量，不会导致子类初始化== </li>
+</ul>
+<ol start="2">
+<li><p>通过数组定义类引用，不会触发此类的初始化 </p>
+</li>
+<li><p>引用常量不会触发此类或接口的初始化。因为常量在链接阶段就已经被显式赋值了 </p>
+</li>
+<li><p>调用 ClassLoader 类的 loadClass() 方法加载一个类，并不是对类的主动使用，不会导致类的初始化 </p>
+</li>
+</ol>
+<p>如果针对代码，设置参数 -XX:+TraceClassLoading，可以追踪类的加载信息并打印出来</p>
+<p><strong>类的</strong> <strong>Using(<strong><strong>使用</strong></strong>)</strong></p>
+<h3 id="4-类的-Unloading-卸载"><a href="#4-类的-Unloading-卸载" class="headerlink" title="4.类的 Unloading(卸载)"></a><strong>4.类的</strong> <strong>Unloading(<strong><strong>卸载</strong></strong>)</strong></h3><p><strong>（一）类、类的加载器、类的实例之间的引用关系</strong> </p>
+<p>​    在类加载器的内部实现中，用一个 Java 集合来存放所加载类的引用。另一 方面，一个 Class 对象总是会引用它的类加载器，调用 Class 对象的 getClassLoader() 方法，就能获得它的类加载器。由此可见，代表某个类的 Class 实例与其类的加载器之间为双向关联关系 </p>
+<p>​    一个类的实例总是引用代表这个类的 Class 对象。在 Object 类中定义了 getClass() 方法，这个方法返回代表对象所属类的 Class 对象的引用。此外，所 有的 Java 类都有一个静态属性 Class，它引用代表这个类的 Class 对象</p>
+<p><strong>（二）类的生命周期</strong> </p>
+<p>​    当 Sample 类被加载、链接和初始化后，它的生命周期就开始了。当代表Sample 类的 Class 对象不再被引用，即不可触及时，Class 对象就会结束生命 周期，Sample 类在方法区内的数据也会被卸载，从而结束 Sample 类的生命周期</p>
+<p>一个类何时结束生命周期，取决于代表它的 Class 对象何时结束生命周期 </p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20201215171348372.png" alt="image-20201215171348372"></p>
+<p>Loader1 变量和 obj 变量间接应用代表 Sample 类的 Class 对象，而 objClass 变量则直接引用它 </p>
+<p>​    如果程序运行过程中，将上图左侧三个引用变量都置为 null，此时 Sample 对象结束生命周期，MyClassLoader 对象结束生命周期，代表 Sample 类的 Class 对象也结束生命周期，Sample 类在方法区内的二进制数据被卸载 </p>
+<p>​    当再次有需要时，会检查 Sample 类的 Class 对象是否存在，如果存在会直 接使用，不再重新加载；如果不存在 Sample 类会被重新加载，在 Java 虚拟机 的堆区会生成一个新的代表 Sample 类的 Class 实例(可以通过哈希码查看是否 是同一个实例) </p>
+<p><strong>（四）类的卸载</strong></p>
+<ol>
+<li><p>启动类加载器加载的类型在整个运行期间是不可能被卸载的(JVM 和 JSL规范) </p>
+</li>
+<li><p>被系统类加载器和扩展类加载器加载的类型在运行期间不太可能被卸载，因为系统类加载器实例或者扩展类的实例基本上在整个运行期间总能直接或者间接的访问的到，其达到 unreachable 的可能性极小 </p>
+</li>
+<li><p>被开发者自定义的类加载器实例加载的类型只有在很简单的上下文环境中才能被卸载，而且一般还要借助于强制调用虚拟机的垃圾收集功能才可以做 到。可以预想，稍微复杂点的应用场景(比如：很多时候用户在开发自定义类 的加载器实例的时候采用缓存的策略以提高系统性能)，被加载的类型在运行 期间也是几乎不太可能被卸载的(至少卸载的时间是不确定的) </p>
+</li>
+</ol>
+<p>综合以上三点，一个已经加载的类型被卸载的几率很小至少被卸载的时间是 不确定的。同时我们可以看的出来，开发者在开发代码时候，不应该对虚拟机的类型卸载做任何假设的前提下，来实现系统中的特定功能  </p>
+<h2 id="—–类加载器——"><a href="#—–类加载器——" class="headerlink" title="==—–类加载器——=="></a>==—–类加载器——==</h2><p>类加载器是 JVM 执行类加载机制的前提 </p>
+<p><strong>1.ClassLoader 的作用：</strong> </p>
+<p>​    ClassLoader 是 Java 的核心组件，所有的 Class 都是由 ClassLoader 进行 加载的，ClassLoader 负责通过各种方式将 Class 信息的二进制数据流读入 JVM 内部，转换为一个与目标类对应的 java.lang.Class 对象实例。然后交给 Java 虚拟机尽心链接、初始化等操作。因此，ClassLoader 在整个装载阶段，只 能影响到类的加载，而无法通过 ClassLoader 去改变类的链接和初始化行为。至 于它是否可以运行，则由 Execution Engine 决定</p>
+<p>​    类加载器最早出现在 Java 1.0 版本中，那个时候只是单纯地为了满足 Java Applet 应用而被研发出来，但如今类加载器却在 OSGI、字节码加解密领域大放 异彩。这主要归功于 Java 虚拟机的设计者们当初在设计类加载器的时候，并没 有考虑将它绑定在 JVM 内部，这样做的好处就是能够更加灵活和动态地执行类 加载操作 </p>
+<p><strong>2.</strong> <strong>类加载的分类</strong> </p>
+<p><strong>类的加载分类：显式加载</strong> <strong>vs</strong> <strong>隐式加载</strong> </p>
+<p>Class 文件的显式加载与隐式加载的方式是指 JVM 加载 Class 文件到内存 的方式 </p>
+<ul>
+<li><p>显式加载指的是在代码中通过调用 ClassLoader 加载 Class 对象，如直接使 用 Class.forName(name) 或 this.getClass().getClassLoader().loadClass() 加载Class 对象 </p>
+</li>
+<li><p>隐式加载则是不直接在代码中调用 ClassLoader 的方法加载 Class 对象，而 是通过虚拟机自动加载到内存中，如在加载某个类的 Class 文件时，该类的 Class 文件中引用了另外一个类的对象，此时额外引用的类将通过 JVM 自 动加载到内存 </p>
+</li>
+</ul>
+<p>在日常开发中以上两种方式一般会混合使用 </p>
+<p><strong>3.</strong> <strong>类加载器的必要性</strong></p>
+<p>一般情况下，Java 开发人员并不需要在程序中显式地使用类加载器，但是了 </p>
+<p>解类加载器的加载机制却显得至关重要。从以下几个方面说： </p>
+<ul>
+<li>避 免 在 开 发 中 遇 到 java.lang.ClassNotFoundException 异 常 或 java.lang.NoClassDeFoundError 异常时手足无措。只有了解类加载器的加载机制才能够在出现异常的时候快速地根据错误异常日志定位问题和解决问 题</li>
+<li>需要支持类的动态加载或需要对编译后的字节码文件进行加解密操作时，就 需要与类加载器打交道了</li>
+<li>开发人员可以在程序中编写自定义类加载器来重新定义类的加载规则，以便实现一些自定义的处理逻辑</li>
+</ul>
+<p><strong>4.</strong> <strong>命名空间</strong></p>
+<ol>
+<li>何为类的唯一性？ </li>
+</ol>
+<p>对于任意一个类，都需要由加载它的类加载器和这个类本身一同确认其在Java 虚拟机中的唯一性。每一个类加载器，都拥有一个独立的类名称空间：比 两个类是否相等，只有在这两个类是由同一个类加载器加载的前提下才有意义。否则，即使这两个类源自同一个 Class 文件，被同一个虚拟机加载，只要加载 他们的类加载器不同，那这两个类就必定不相等</p>
+<ol start="2">
+<li>命名空间 </li>
+</ol>
+<p> 每个类加载器都有自己的命名空间，命名空间由该加载器所有的父加载器所加载的类组成 </p>
+<p> 在同一命名空间中，不会出现类的完整名字(包括类的包名)相同的两个类 </p>
+<p> 在不同的命名空间中，有可能会出现类的完整名字(包括类的包名)相同的两 个类 </p>
+<p>在大型应用中，我们往往借助这一特性，来运行同一个类的不同版本 </p>
+<p><strong>5.</strong> <strong>类加载机制的基本特征</strong></p>
+<ul>
+<li>双亲委派模型。但不是所有类加载都遵守这个模型，有的时候，启动类加载器 所 加 载 的 类 型 ， 是 可 能 要 加 载 用 户 代 码 的 ， 比 如 JDK 内 部 的 ServiceProvider/ServiceLoader 机制，用户可以在标准 API 框架上，提供自 己的实现，JDK 也需要提供些默认的参考实现。例如，Java 中 JNDI、JDBC、 文件系统、Cipher 等很多方面，都是利用的这种机制，这种情况就不会用双 亲委派模型去加载，而是利用所谓的上下文加载器 </li>
+<li>可见性，子类加载器可以访问父加载器加载的类型，但是反过来是不允许的。 不然，因为缺少必要的隔离，我们就没有办法利用类加载器去实现容器的逻 辑 </li>
+<li>单一性，由于父加载器的类型对于子加载器是可见的，所以父加载器中加载 过的类型，就不会在子加载器中重复加载。但是注意，类加载器”邻居”间， 同一类型仍然可以被加载多次，因为相互并不可见</li>
+</ul>
+<h3 id="1-类的加载器分类"><a href="#1-类的加载器分类" class="headerlink" title="1.类的加载器分类"></a><strong>1.类的加载器分类</strong></h3><p>​    JVM 支持两种类型的类加载器，分别为引导类加载器(Bootstrap ClassLoader) 和自定义类加载器(User-Defined ClassLoader)</p>
+<p>​    从概念上来讲，自定义类加载器一般指的是程序中由开发人员自定义的一类 类加载器，但是 Java 虚拟机规范却没有这么定义，而是将所有派生于抽象类 ClassLoader 的类加载器都划分为自定义类加载器。无论类加载器的类型如何划 分，在程序中我们最常见的类加载器结构主要是如下情况</p>
+<ul>
+<li>除了顶层的启动类加载器外，其余的类加载器都应当有自己的”父类”加载器 </li>
+<li>不同类加载器看似是继承(Inheritance)关系，实际上是包含关系。在下层加载器中，包含着上层加载器的引用</li>
+</ul>
+<h3 id="1-1引导类加载器"><a href="#1-1引导类加载器" class="headerlink" title="1.1引导类加载器"></a>1.1<strong>引导类加载器</strong></h3><ul>
+<li><p>这个类加载使用 C/C++ 语言实现的，嵌套在 JVM 内部 </p>
+</li>
+<li><p>它用来加载 Java 的核心库(JAVA_HOME/jre/lib/rt.jar 或 sun.boot.class.path路径下的内容)。用于提供 JVM 自身需要的类 </p>
+</li>
+<li><p>并不继承自 java.lang.ClassLoader，没有父加载器 </p>
+</li>
+<li><p>出于安全考虑，Bootstrap 启动类加载器之加载包名为 java、javax、sun 等 开头的类 </p>
+</li>
+<li><p>加载扩展类和应用程序类加载器，并指定为他们的父类加载器</p>
+</li>
+</ul>
+<p> C/C++：指针函数 &amp; 函数指针、C++ 支持多继承、更加高效 </p>
+<p> Java ：由 C++ 演变而来，(C++)– 版，单继承</p>
+<h3 id="1-2-扩展类加载器"><a href="#1-2-扩展类加载器" class="headerlink" title="1.2 扩展类加载器"></a>1.2 <strong>扩展类加载器</strong></h3><ul>
+<li><p>Java 语言编写，由 sun.misc.Launcher$ExtClassLoader 实现 </p>
+</li>
+<li><p>继承于 ClassLoader 类 </p>
+</li>
+<li><p>父类加载器为启动类加载器 </p>
+</li>
+<li><p>从 java.ext.dirs 系统属性所指定的目录中加载类库，或从 JDK 的安装目录 的 jre/lib/ext 子目录下加载类库。如果用户创建的 JAR 放在此目录下，也 会自动由扩展类加载器加载</p>
+</li>
+</ul>
+<h3 id="1-3-系统类加载器AppClassLoader"><a href="#1-3-系统类加载器AppClassLoader" class="headerlink" title="1.3. 系统类加载器AppClassLoader"></a><strong>1.3.</strong> <strong>系统类加载器AppClassLoader</strong></h3><ul>
+<li>Java 语言编写，由 sun.misc.Launcher$AppClassLoader 实现</li>
+<li>继承于 ClassLoader 类 </li>
+<li>父类加载器为扩展类加载器</li>
+<li> 它负责加载环境变量 classpath 或系统属性 java.class.path 指定路径下的类 库 </li>
+<li> 应用程序中的类加载器默认是系统类加载器</li>
+<li>它是用户自定义类加载器的默认父加载器 </li>
+<li>通过 ClassLoader 的 getSystemClassLoader() 方法可以获取到该类加载器 </li>
+</ul>
+<h3 id="1-4-用户自定义类加载器"><a href="#1-4-用户自定义类加载器" class="headerlink" title="1.4. 用户自定义类加载器"></a><strong>1.4.</strong> <strong>用户自定义类加载器</strong></h3><p> 在 Java 的日常应用程序开发中，类的加载几乎是由上述 3 种类加载器相互 </p>
+<p>配合执行的。在必要时，我们还可以自定义类加载器，来定制类的加载方式 </p>
+<p> 体现 Java 语言强大生命力和巨大魅力的关键因素之一便是，Java 开发者可 </p>
+<p>以自定义类加载器来实现类库的动态加载，加载源可以是本地的 JAR 包， </p>
+<p>也可以是网络上的远程资源 </p>
+<p> 通过类加载器可以实现非常绝妙的插件机制，这方面的实际应用案例不胜枚 </p>
+<p>举。例如，著名的 OSGI 组件框架，再如 Eclipse 的插件机制。类加载器为 </p>
+<p>应用程序提供了一种动态增加新功能的机制，这种机制无需重新打包发布应 </p>
+<p>用程序就能实现 </p>
+<p> 同时，自定义加载器能够实现应用隔离，例如 Tomcat、Spring 等中间件和 </p>
+<p>组件框架都在内部实现了自定义的加载器，并通过自定义加载器隔离不同的 </p>
+<p>组件模块。这种机制比 C/C++ 程序要好太多，想不修改 C/C++ 程序就能 </p>
+<p>为其新增功能，几乎是不可能的，仅仅一个兼容性便能阻挡所有美好的设想 </p>
+<p> 自定义类加载器通常需要继承于 ClassLoader</p>
+<blockquote>
+<p>数组类的 Class 对象，不是由类加载器去创建的，而是在 Java 运行期 JVM </p>
+<p>根据需要自动创建的。对于数组类的类加载器来说，是通过 </p>
+<p>Class.geetClassLoader() 返回的，与数组当中元素类型的类加载器是一样的：如 </p>
+<p>果数组当中的元素类型是基本数据类型，数组类是没有类加载器的</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/f/about" rel="external nofollow noreferrer">摩托</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://fengylf.github.io/f/f/2021/04/25/note/java%E5%9F%BA%E7%A1%80/jvm5%E5%AD%97%E8%8A%82%E7%A0%81%E4%B8%8E%E7%B1%BB%E5%8A%A0%E8%BD%BD/">https://fengylf.github.io/f/f/2021/04/25/note/java%E5%9F%BA%E7%A1%80/jvm5%E5%AD%97%E8%8A%82%E7%A0%81%E4%B8%8E%E7%B1%BB%E5%8A%A0%E8%BD%BD/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/f/about" target="_blank">摩托</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/f/tags/jvm/">
+                                    <span class="chip bg-color">jvm</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/f/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/f/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/f/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/f/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/f/2021/04/25/note/ssm/spring%E6%B3%A8%E8%A7%A3%E9%9B%B7%E4%B8%B0%E9%98%B3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/2.jpg" class="responsive-img" alt="spring注解雷丰阳">
+                        
+                        <span class="card-title">spring注解雷丰阳</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/spring/" class="post-category">
+                                    spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/spring%E9%9B%B7%E4%B8%B0%E9%98%B3/">
+                        <span class="chip bg-color">spring雷丰阳</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/f/2021/04/25/note/java%E5%9F%BA%E7%A1%80/jvm02%E5%A0%86heap%E6%96%B9%E6%B3%95%E5%8C%BA/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/4.jpg" class="responsive-img" alt="jvm2-堆方法区">
+                        
+                        <span class="card-title">jvm2-堆方法区</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/jvm/" class="post-category">
+                                    jvm
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/jvm/">
+                        <span class="chip bg-color">jvm</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/f/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/f/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/f/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/f/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/f/about" target="_blank">摩托</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">329.5k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1300379737@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1300379737" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1300379737" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/f/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/f/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/f/libs/materialize/materialize.min.js"></script>
+    <script src="/f/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/f/libs/aos/aos.js"></script>
+    <script src="/f/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/f/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/f/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/f/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/f/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/f/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

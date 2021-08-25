@@ -1,0 +1,1424 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+	<meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="spring之循环依赖, Hexo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>spring之循环依赖 | Hexo</title>
+    <link rel="icon" type="image/png" href="/f/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/f/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/my.css">
+
+    <script src="/f/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/f/" class="waves-effect waves-light">
+                    
+                    <img src="/f/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/f/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/f/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">spring之循环依赖</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/f/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/f/tags/spring/">
+                                <span class="chip bg-color">spring</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/f/categories/spring%E5%AE%B6%E6%97%8F%E6%BA%90%E7%A0%81/" class="post-category">
+                                spring家族源码
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-25
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/f/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="循环依赖需要知道的几点"><a href="#循环依赖需要知道的几点" class="headerlink" title="循环依赖需要知道的几点:"></a>循环依赖需要知道的几点:</h2><ul>
+<li>必须达成的共识, spring 的单例池中只能放 bean,而走完实例化-属性填充-初始化三个阶段后(后文统一称作生命周期流程,当然我们忽略了销毁这个阶段)的对象才叫 bean,才能放入单例池,半成品不能放到单例池,很重要的共识,否则很多问题没法讨论.</li>
+<li>对用户来说,A,B 互相做为对方的属性,他们两个发生了循环依赖</li>
+<li>对 spring 来说,A,B 互相做为对方的属性,先调用了 getBean(“a”),那么 A 才真正的出现了循环依赖.对 spring 的流程来说,B 并没有发生循环依赖.因为 B 在生命周期过程中,会发现 A 已经存在,可以直接注入(虽然是早期对象,三级工厂缓存),这一点比较重要.</li>
+<li></li>
+</ul>
+<p>DefaultSingletonBeanRegistry</p>
+<h2 id="三级缓存介绍"><a href="#三级缓存介绍" class="headerlink" title="三级缓存介绍"></a>三级缓存介绍</h2><blockquote>
+<p>ConcurrentHashMap&lt;String, Object&gt; singletonObjects : 一级缓存,spring 容器 ,单例池,存的是 spring 的 bean,<br>HashMap&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories:提前暴露一个工厂(如果直接提前暴露对象,后面没办法完成 aop),主要为了解决循环依赖的 aop. 3 级缓存,工厂,过程比较复杂,如果同一个 bean 被多个其它的 bean 引用,只用二级缓存的话性能低.引入三级缓存.<br>HashMap&lt;String, Object&gt; earlySingletonObjects: 2 级缓存,存的是对象,或者理解为早期的非完整 bean,完整之后会放到一级缓存</p>
+</blockquote>
+<blockquote>
+<p>为什么</p>
+</blockquote>
+<h3 id="为什么单例池-singletonObjects-是-ConcurrentHashMap-而另外两个是-HashMap"><a href="#为什么单例池-singletonObjects-是-ConcurrentHashMap-而另外两个是-HashMap" class="headerlink" title="为什么单例池 singletonObjects 是 ConcurrentHashMap,而另外两个是 HashMap?"></a>为什么单例池 singletonObjects 是 ConcurrentHashMap,而另外两个是 HashMap?</h3><blockquote>
+<ul>
+<li>singletonObjects 是允许你多线程的访问的;而且当能取到值的时候,它是不加锁的.当取到为 null 的时候会自动替你上锁同步.</li>
+<li>另外两个缓存你要读取的前提是当前 bean 正在创建,而且读取的时候是加锁同步的,也就是本身就限制了只有一个线程可以访问到其他两个缓存.</li>
+<li>新版 spring 把 earlySingletonObjects 也改成了 ConcurrentHashMap,把单例池和二级缓存都进行了<em>double checked locking.</em></li>
+</ul>
+</blockquote>
+<h2 id="三级缓存的秘密"><a href="#三级缓存的秘密" class="headerlink" title="三级缓存的秘密:"></a>三级缓存的秘密:</h2><p>前提:spring 的基本原则是,走完生命周期流程,才叫 bean</p>
+<ul>
+<li>首先 singletonObject 单例池肯定要只能放走完流程的 bean,保证没走完流程的只能获取到 null,(而且保证获取到 null 后,想走 getSingleton()创建,还得加锁).因此半成品不能放单例池,所有至少要有另外一个缓存来存放不完整的对象.</li>
+<li>两个缓存可以解决不牵涉 aop 的普通 bean 的循环依赖.</li>
+<li>第三个缓存只是用来解决 aop 的 bean 之间的循环依赖.</li>
+<li>我的理解,引入第三个缓存的意义就是 aop 过程中的一个标记作用:earlySingletonObjects 有值就标记了 singletonFactories 被访问过一次,如果有 aop 的话,他一定被增强过了</li>
+<li>其次,isSingletonCurrentlyInCreation()是要保证,只有循环依赖的情况才能进入,那么单独一个二级缓存肯定不行;然而你不能从二级缓存直接取出放到单例池,因为此时它没走完流程. 否则 A 第二次进入 getSingleton()之后,要把二级缓存放到单例池,但明显此时还是半成品,还是不能放到单例池.</li>
+<li>因此必须要三级缓存.保证 A 第二次进来的时候,将半成品放到二级缓存,保证其他线程来还是不能从单例池取出 A.</li>
+<li>spring 的三级缓存实现了这个效果:解决了 aop 的循环依赖,通过提前 aop 的发生.是在完整流程最后一个阶段发生的 aop,即在 postProcessAfterInitialization()方法中完成的.不影响前面的流程.</li>
+<li>第三级缓存是不是必须的呢,原则上不是必须的,但它不是多余的,你可以换个方式来实现,比如你可以为第二级缓存中的对象做一个标记,标志它是否已经发生过 aop,保证它只会被增强一次(例如 A 和 B 循环依赖,但 B 又同时依赖 C,C 又依赖 A,如果你不加标志位,A 就会被增强两次),而不会发生重复增强,那么就不需要第三级缓存,但是这样就比较绕.</li>
+</ul>
+<h2 id="AOP-时的循环依赖-A-amp-B"><a href="#AOP-时的循环依赖-A-amp-B" class="headerlink" title="AOP 时的循环依赖:A&amp;B"></a>AOP 时的循环依赖:A&amp;B</h2><p>代理类$A,$B</p>
+<ul>
+<li>A 先实例化,包装成工厂之后加入到三级缓存 singletonFactories.</li>
+<li>A 开始属性注入,发现依赖 B</li>
+</ul>
+<hr>
+<ul>
+<li>去实例化 B,然后包装成工厂之后加入到三级缓存 singletonFactories.</li>
+<li>B 开始属性注入,发现依赖 A</li>
+<li>又去 getBean(“a”),进而 getSingleton(“a”, <em>true</em>),然后发现三级缓存中有 A,就调用 singletonFactory.getObject(),也就是调用 getEarlyBeanReference(“a”, mbd, bean)</li>
+<li>回调<em>SmartInstantiationAwareBeanPostProcessor(其中_AbstractAutoProxyCreator)</em>.<em>getEarlyBeanReference(A@001, “a”),将 A 存入缓存中,_this</em>.earlyProxyReferences.put(cacheKey, bean);</li>
+<li>发现需要增强 A,增强后得到$A@15ca7889 返回,并放入二级缓存 earlySingletonObjects</li>
+<li>从而顺利为 B 注入代理后的$A@15ca7889.</li>
+<li>B 属性注入完成之后,开始 initializeBean(),然后又调到了 AbstractAutoProxyCreator#postProcessAfterInitialization(),发现 B 也需要被增强,得到 exposedObject = $B@d21a74c</li>
+<li>通过 addSingleton(“b”, $B@d21a74c),将三级缓存中的B移除,并$B@d21a74c 放入单例池</li>
+<li>至此 B 的 bean 正式完成——————————-</li>
+<li>回到 A 的属性注入流程,此时 exposedObject 还是原始是 A@001,将$B@d21a74c 注入属性后,进入 initializeBean()</li>
+<li>然后调到 AbstractAutoProxyCreator#postProcessAfterInitialization(),由于<em>this</em>.earlyProxyReferences 已经缓存了上面的结果,此时不必再次增强了,原样返回即可(因为可以从二级缓存中取)</li>
+<li>exposedObject = 还是 A@001</li>
+<li>getSingleton(“a”, <em>false</em>),去取出二级缓存中的$A@15ca7889,</li>
+<li>exposedObject = earlySingletonReference,即$A@15ca7889,返回出去;</li>
+</ul>
+<p>总结:</p>
+<blockquote>
+<ul>
+<li>AbstractAutoProxyCreator 通过两个方法来完成 aop 间的循环依赖.postProcessAfterInitialization()和 getEarlyBeanReference()</li>
+<li>A 是第二次进入 getBean()后,通过后置处理器增强的</li>
+<li>B 是 initializeBean()阶段增强的</li>
+<li>最后要注意的是,代理后的对象内的属性是 null,而内部的原始父类引用中的属性才有值,因为是属性注入后才 aop,而 aop 之后则没有赋值操作了.</li>
+</ul>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/21576139/1620961746313-0facde1c-2a16-4409-a98d-e968f6ff6a1c.png#align=left&display=inline&height=158&margin=%5Bobject%20Object%5D&name=image.png&originHeight=315&originWidth=1216&size=67323&status=done&style=none&width=608" alt="image.png"></p>
+<h2 id="自己对三级缓存的理解"><a href="#自己对三级缓存的理解" class="headerlink" title="自己对三级缓存的理解:"></a>自己对三级缓存的理解:</h2><ul>
+<li>不要缓存?<ul>
+<li>前提是错误的抛弃掉共识,把未经完整流程的对象放入单例池做为 bean</li>
+<li>什么都不考虑的话,不考虑 aop,不用缓存就可以解决循环依赖(前提是单线程,否则可能拿到未初始化完成的 bean),这么做不太合适</li>
+<li>如果要 aop,则不行.(??或者实例化之后,直接提前 aop,然后放入单例池.然后对 aop 后的代理对象进行属性填充,初始化,这样不太好?例如你的初始化方法早早的就被代理了,如日志,那么你连初始化方法都会提前增强,想法有点奇葩)</li>
+</ul>
+</li>
+<li>二级缓存,不考虑 aop?<ul>
+<li>将早期对象 A 的工厂,放入二级缓存,然后对原始对象属性填充,如果没有发生循环依赖,完成流程,直接加入单例池中.</li>
+<li>待发生循环依赖,第二次 getBean()将从二级缓存中取出早期原始对象,赋值给 B 的属性.</li>
+<li>这样就可以保证正常没有 aop 的循环依赖,保证单例池中都是完整流程的 bean</li>
+</ul>
+</li>
+<li>二级缓存,加上 aop?<ul>
+<li>将早期对象 A 的工厂,放入二级缓存</li>
+</ul>
+</li>
+</ul>
+<p>进入 doGetBean()方法的时候,会先检查缓存,再决定是否需要 create 流程.能拿到自然就不走了.<br>某个 bean 创建过程,doCreateBean()方法的时候,已创建出 beanWrapper,还没有 populateBean()之前,就将早期对象包装成工厂,放入三级缓存 singletonFactories(三级缓存放的是工厂)中.</p>
+<h2 id="getSingleton-String-beanName-boolean-allowEarlyReference"><a href="#getSingleton-String-beanName-boolean-allowEarlyReference" class="headerlink" title="getSingleton(String beanName, boolean allowEarlyReference)"></a>getSingleton(String beanName, boolean allowEarlyReference)</h2><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//DefaultSingletonBeanRegistry#</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token keyword">boolean</span> allowEarlyReference<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token comment">// 先检查单例池,单例池存在就说明走过完整 bean 生命周期直接返回了.</span>
+		<span class="token class-name">Object</span> singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token function">isSingletonCurrentlyInCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">//如果从单例缓存中获取不成功，则锁定全局变量,这里只会在循环依赖时进入</span>
+            <span class="token comment">//检查二级缓存,早期对象</span>
+			singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>earlySingletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//双重检查锁（double checked locking）</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> allowEarlyReference<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+					<span class="token comment">// Consistent creation of early reference within full singleton lock</span>
+					singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+						singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>earlySingletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+						<span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                            <span class="token comment">//前两级缓存都没有,从三级缓存找</span>
+							<span class="token class-name">ObjectFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> singletonFactory <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonFactories<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+							<span class="token keyword">if</span> <span class="token punctuation">(</span>singletonFactory <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                                <span class="token comment">//三级缓存拿到,就从工厂中取出早期对象,移动到二级缓存中</span>
+                                <span class="token comment">//只有循环依赖,第二次调用getBean()的那个bean</span>
+                               <span class="token comment">//(例如A.B循环依赖,先getBean(A),那么第二次getBean(A)才会走到这里)</span>
+								singletonObject <span class="token operator">=</span> singletonFactory<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+								<span class="token keyword">this</span><span class="token punctuation">.</span>earlySingletonObjects<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> singletonObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+								<span class="token keyword">this</span><span class="token punctuation">.</span>singletonFactories<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+							<span class="token punctuation">&#125;</span>
+						<span class="token punctuation">&#125;</span>
+					<span class="token punctuation">&#125;</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">return</span> singletonObject<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="getSingleton-String-beanName-ObjectFactory-lt-gt-singletonFactory"><a href="#getSingleton-String-beanName-ObjectFactory-lt-gt-singletonFactory" class="headerlink" title="getSingleton(String beanName, ObjectFactory&lt;?&gt; singletonFactory)"></a>getSingleton(String beanName, ObjectFactory&lt;?&gt; singletonFactory)</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token class-name">ObjectFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> singletonFactory<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token string">"Bean name must not be null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token class-name">Object</span> singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonsCurrentlyInDestruction<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+					<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationNotAllowedException</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span>
+							<span class="token string">"Singleton bean creation not allowed while singletons of this factory are in destruction "</span> <span class="token operator">+</span>
+							<span class="token string">"(Do not request a bean from a BeanFactory in a destroy method implementation!)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isDebugEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+					logger<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Creating shared instance of singleton bean '"</span> <span class="token operator">+</span> beanName <span class="token operator">+</span> <span class="token string">"'"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+				<span class="token function">beforeSingletonCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token keyword">boolean</span> newSingleton <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+				<span class="token keyword">boolean</span> recordSuppressedExceptions <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>suppressedExceptions <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>recordSuppressedExceptions<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+					<span class="token keyword">this</span><span class="token punctuation">.</span>suppressedExceptions <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+				<span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+					singletonObject <span class="token operator">=</span> singletonFactory<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+					newSingleton <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>newSingleton<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+					<span class="token function">addSingleton</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> singletonObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">return</span> singletonObject<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>aop 发生循环依赖的情况</p>
+<h2 id="AbstractAutoProxyCreator"><a href="#AbstractAutoProxyCreator" class="headerlink" title="AbstractAutoProxyCreator"></a>AbstractAutoProxyCreator</h2><blockquote>
+<p>earlyProxyReferences:只会存放第二次调用 getBean()的那个早期 bean 引用,即从三级缓存工厂中取出的时候,放入此 map;老版本 spring 用的 set 集合.</p>
+</blockquote>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"> <span class="token comment">// AbstractAutoProxyCreator#</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token comment">//initialize最后调用,正常实现aop</span>
+	<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">postProcessAfterInitialization</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>bean <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token class-name">Object</span> cacheKey <span class="token operator">=</span> <span class="token function">getCacheKey</span><span class="token punctuation">(</span>bean<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//第二次调用getBean()的那个早期bean引用,即从三级缓存工厂中取出的那个bean,</span>
+            <span class="token comment">//此处才会相等,就会跳过增强的检查.因为在getEarlyBeanReference()已经做过增强检查.</span>
+            <span class="token comment">//其他时候一般remove都是null</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>earlyProxyReferences<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">)</span> <span class="token operator">!=</span> bean<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">return</span> <span class="token function">wrapIfNecessary</span><span class="token punctuation">(</span>bean<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">return</span> bean<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token annotation punctuation">@Override</span>
+<span class="token comment">//提供循环依赖时,提前实现aop的功能</span>
+<span class="token comment">//在循环依赖时,在第二次调用getBean之后才会调用此方法,从三级缓得到早期bean引用</span>
+	<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span><span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token class-name">Object</span> cacheKey <span class="token operator">=</span> <span class="token function">getCacheKey</span><span class="token punctuation">(</span>bean<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//将bean的早期对象加到this.earlyProxyReferences,</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>earlyProxyReferences<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">,</span> bean<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//aop的时候会在此提前增强</span>
+		<span class="token keyword">return</span> <span class="token function">wrapIfNecessary</span><span class="token punctuation">(</span>bean<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="doCreateBean"><a href="#doCreateBean" class="headerlink" title="doCreateBean()"></a>doCreateBean()</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//doCreateBean()方法</span>
+<span class="token keyword">final</span> <span class="token class-name">Object</span> bean <span class="token operator">=</span> instanceWrapper<span class="token punctuation">.</span><span class="token function">getWrappedInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//将wp中的bean早期对象包装成工厂放入三级缓存,因为可以发生aop,将来取出的时候可能已经不是原始bean</span>
+<span class="token function">addSingletonFactory</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> bean<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token class-name">Object</span> exposedObject <span class="token operator">=</span> bean<span class="token punctuation">;</span>
+<span class="token comment">//对wp中的原始bean早期对象进行属性注入</span>
+<span class="token function">populateBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> instanceWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token comment">//调用初始化方法，比如init-method属性指定的初始化方法</span>
+			<span class="token comment">//该方法中有第7,8次调用后置处理器</span>
+exposedObject <span class="token operator">=</span> <span class="token function">initializeBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> exposedObject<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//解决循环依赖时,提前暴露的早期对象.(因为只有发生循环依赖时,才会使用到早期对象,这里就要检查刚才initializeBean()的时候,你是否又修改了exposedObject).</span>
+<span class="token comment">//你要是使用了缓存中的早期对象,又在刚才的exposedObject()修改了exposedObject,同时你又在其他bean中依赖此早期对象,那肯定给你报错.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>earlySingletonExposure<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token class-name">Object</span> earlySingletonReference <span class="token operator">=</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token comment">//earlySingletonReference只有在检测到有循环依赖的情况下才不会为空</span>
+<span class="token punctuation">(</span><span class="token class-name">A</span>需要注入<span class="token class-name">B</span><span class="token punctuation">,</span>则当<span class="token class-name">B</span>的生命周期走完之后<span class="token punctuation">,</span>继续回到<span class="token class-name">A</span>的属性注入<span class="token punctuation">,</span>初始化后<span class="token punctuation">,</span>才会走到这里<span class="token punctuation">,</span>此时<span class="token class-name">A</span>的三级缓存为空<span class="token punctuation">,</span>二级缓存有值<span class="token punctuation">,</span>
+因为第二次触发<span class="token class-name">GetBean</span><span class="token punctuation">(</span><span class="token class-name">A</span><span class="token punctuation">)</span>后会移动到二级缓存<span class="token punctuation">)</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>earlySingletonReference <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>exposedObject <span class="token operator">==</span> bean<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+					<span class="token comment">//如果exposedObject没有在初始化方法中被改变，也就是没有被增强</span>
+					exposedObject <span class="token operator">=</span> earlySingletonReference<span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>allowRawInjectionDespiteWrapping <span class="token operator">&amp;&amp;</span> <span class="token function">hasDependentBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token comment">//例如@Asyn的时候,要特别注意避免引发循环依赖</span>
+                    <span class="token comment">//该bean被哪些beans依赖,即该bean作为哪些beans的属性</span>
+					<span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dependentBeans <span class="token operator">=</span> <span class="token function">getDependentBeans</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//</span>
+					<span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> actualDependentBeans <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>dependentBeans<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> dependentBean <span class="token operator">:</span> dependentBeans<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+						<span class="token comment">//检测依赖</span>
+						<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">removeSingletonIfCreatedForTypeCheckOnly</span><span class="token punctuation">(</span>dependentBean<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+							actualDependentBeans<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>dependentBean<span class="token punctuation">)</span><span class="token punctuation">;</span>
+						<span class="token punctuation">&#125;</span>
+					<span class="token punctuation">&#125;</span>
+					<span class="token comment">//actualDependentBeans不为空表示当前bean创建后,发现有依赖于此bean的beans(),但是你却在initializeBean()步骤改变了原有bean,</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="另类解决循环依赖"><a href="#另类解决循环依赖" class="headerlink" title="另类解决循环依赖:"></a>另类解决循环依赖:</h2><p>@DependsOn 与@Lazy</p>
+<p>@DependsOn</p>
+<ul>
+<li>你可以通过他来明确的让哪个 bean 先加载.</li>
+<li>但是你同时要注意@DependsOn 之间又一定不能出现循环依赖.</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">这里就是<span class="token annotation punctuation">@DependsOn</span>之间的循环依赖<span class="token punctuation">,</span>妥妥的报错<span class="token punctuation">.</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@DependsOn</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">)</span>
+<span class="token class-name">Class</span> <span class="token class-name">A</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@DependsOn</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span>
+<span class="token class-name">Class</span> <span class="token class-name">B</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意与@Asyn 使用的时候,重复代理的情况<br>postProcessAfterInitialization()会发生代理</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/f/about" rel="external nofollow noreferrer">摩托</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://fengylf.github.io/f/f/2021/07/25/note/%E5%8E%9F%E7%94%9Fspring/spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">https://fengylf.github.io/f/f/2021/07/25/note/%E5%8E%9F%E7%94%9Fspring/spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/f/about" target="_blank">摩托</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/f/tags/spring/">
+                                    <span class="chip bg-color">spring</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/f/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/f/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/f/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/f/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/f/2021/07/25/note/%E5%8E%9F%E7%94%9Fspring/refresh%E4%B9%8BfinishBeanFactoryInitialization()/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/7.jpg" class="responsive-img" alt="spring.refresh之finishBeanFactoryInitialization()">
+                        
+                        <span class="card-title">spring.refresh之finishBeanFactoryInitialization()</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/spring%E5%AE%B6%E6%97%8F%E6%BA%90%E7%A0%81/" class="post-category">
+                                    spring家族源码
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/spring/">
+                        <span class="chip bg-color">spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/f/2021/07/25/note/%E5%8E%9F%E7%94%9Fspring/spring%E6%BA%90%E7%A0%81%E4%B9%8BinvokeBeanFactoryPostProcessors/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/14.jpg" class="responsive-img" alt="spring源码之invokeBeanFactoryPostProcessors和registerBeanPostProcessors">
+                        
+                        <span class="card-title">spring源码之invokeBeanFactoryPostProcessors和registerBeanPostProcessors</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/spring%E5%AE%B6%E6%97%8F%E6%BA%90%E7%A0%81/" class="post-category">
+                                    spring家族源码
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/spring/">
+                        <span class="chip bg-color">spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/f/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/f/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/f/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/f/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/f/about" target="_blank">摩托</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">329.5k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1300379737@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1300379737" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1300379737" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/f/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/f/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/f/libs/materialize/materialize.min.js"></script>
+    <script src="/f/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/f/libs/aos/aos.js"></script>
+    <script src="/f/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/f/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/f/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/f/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/f/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/f/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1490 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+	<meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="Springmvc注解版, Hexo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Springmvc注解版 | Hexo</title>
+    <link rel="icon" type="image/png" href="/f/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/f/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/my.css">
+
+    <script src="/f/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/f/" class="waves-effect waves-light">
+                    
+                    <img src="/f/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/f/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/f/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Springmvc注解版</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/f/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/f/tags/spring%E9%9B%B7%E4%B8%B0%E9%98%B3/">
+                                <span class="chip bg-color">spring雷丰阳</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/f/categories/spring/" class="post-category">
+                                spring
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-04-25
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    9 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/f/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>servlet3.0（Spring注解版）：</p>
+<p>8.2.4 Shared libraries / runtimes pluggability：</p>
+<p>规则：</p>
+<p>​    1）、服务器启动（web应用启动）会创建当前web应用里面每一个jar包里面ServletContainerInitializer实例：</p>
+<p>​    2）、ServletContainerInitializer的实现放在jar包的META-INF/services文件夹下，有一个名为javax.servlet.ServletContainerInitializer的文件，内容就是ServletContainerInitializer的实现类的全类名</p>
+<p>​    3）、还可以使用@HandlesTypes，在应用启动的时候加载我们感兴趣的类；</p>
+<p>流程：</p>
+<p>1）、启动Tomcat</p>
+<p>2）、org\springframework\spring-web\4.3.14.RELEASE\spring-web-4.3.14.RELEASE.jar!\META-INF\services\javax.servlet.ServletContainerInitializer：</p>
+<p>Spring的web模块里面有这个文件：<strong>org.springframework.web.SpringServletContainerInitializer</strong></p>
+<p>3）、SpringServletContainerInitializer将@HandlesTypes(WebApplicationInitializer.class)标注的所有这个类型的类都传入到onStartup方法的Set&lt;Class&lt;?&gt;&gt;；为这些==WebApplicationInitializer==类型的类创建实例；</p>
+<p>4）、每一个WebApplicationInitializer都调用自己的onStartup；</p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/%E6%90%9C%E7%8B%97%E6%88%AA%E5%9B%BE20180302221835.png"></p>
+<p>5）、相当于我们的SpringBootServletInitializer的类会被创建对象，并执行onStartup方法</p>
+<p>6）、SpringBootServletInitializer实例执行onStartup的时候会createRootApplicationContext；创建容器</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token class-name">WebApplicationContext</span> <span class="token function">createRootApplicationContext</span><span class="token punctuation">(</span>
+      <span class="token class-name">ServletContext</span> servletContext<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//1、创建SpringApplicationBuilder</span>
+   <span class="token class-name">SpringApplicationBuilder</span> builder <span class="token operator">=</span> <span class="token function">createSpringApplicationBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token class-name">StandardServletEnvironment</span> environment <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StandardServletEnvironment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   environment<span class="token punctuation">.</span><span class="token function">initPropertySources</span><span class="token punctuation">(</span>servletContext<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   builder<span class="token punctuation">.</span><span class="token function">environment</span><span class="token punctuation">(</span>environment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   builder<span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token class-name">ApplicationContext</span> parent <span class="token operator">=</span> <span class="token function">getExistingRootWebApplicationContext</span><span class="token punctuation">(</span>servletContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>parent <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Root context already created (using as parent)."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      servletContext<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>
+            <span class="token class-name">WebApplicationContext</span><span class="token punctuation">.</span>ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      builder<span class="token punctuation">.</span><span class="token function">initializers</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ParentContextApplicationContextInitializer</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+   builder<span class="token punctuation">.</span><span class="token function">initializers</span><span class="token punctuation">(</span>
+         <span class="token keyword">new</span> <span class="token class-name">ServletContextApplicationContextInitializer</span><span class="token punctuation">(</span>servletContext<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   builder<span class="token punctuation">.</span><span class="token function">contextClass</span><span class="token punctuation">(</span><span class="token class-name">AnnotationConfigEmbeddedWebApplicationContext</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">//调用configure方法，子类重写了这个方法，将SpringBoot的主程序类传入了进来</span>
+   builder <span class="token operator">=</span> <span class="token function">configure</span><span class="token punctuation">(</span>builder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">//使用builder创建一个Spring应用</span>
+   <span class="token class-name">SpringApplication</span> application <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>application<span class="token punctuation">.</span><span class="token function">getSources</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token class-name">AnnotationUtils</span>
+         <span class="token punctuation">.</span><span class="token function">findAnnotation</span><span class="token punctuation">(</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Configuration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      application<span class="token punctuation">.</span><span class="token function">getSources</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+   <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token operator">!</span>application<span class="token punctuation">.</span><span class="token function">getSources</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+         <span class="token string">"No SpringApplication sources have been defined. Either override the "</span>
+               <span class="token operator">+</span> <span class="token string">"configure method or add an @Configuration annotation"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token comment">// Ensure error pages are registered</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>registerErrorPageFilter<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      application<span class="token punctuation">.</span><span class="token function">getSources</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">ErrorPageFilterConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+    <span class="token comment">//启动Spring应用</span>
+   <span class="token keyword">return</span> <span class="token function">run</span><span class="token punctuation">(</span>application<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>7）、Spring的应用就启动并且创建IOC容器</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">ConfigurableApplicationContext</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token class-name">StopWatch</span> stopWatch <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StopWatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   stopWatch<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token class-name">ConfigurableApplicationContext</span> context <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+   <span class="token class-name">FailureAnalyzers</span> analyzers <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+   <span class="token function">configureHeadlessProperty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token class-name">SpringApplicationRunListeners</span> listeners <span class="token operator">=</span> <span class="token function">getRunListeners</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   listeners<span class="token punctuation">.</span><span class="token function">starting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+      <span class="token class-name">ApplicationArguments</span> applicationArguments <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DefaultApplicationArguments</span><span class="token punctuation">(</span>
+            args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">ConfigurableEnvironment</span> environment <span class="token operator">=</span> <span class="token function">prepareEnvironment</span><span class="token punctuation">(</span>listeners<span class="token punctuation">,</span>
+            applicationArguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">Banner</span> printedBanner <span class="token operator">=</span> <span class="token function">printBanner</span><span class="token punctuation">(</span>environment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      context <span class="token operator">=</span> <span class="token function">createApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      analyzers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FailureAnalyzers</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">prepareContext</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> environment<span class="token punctuation">,</span> listeners<span class="token punctuation">,</span> applicationArguments<span class="token punctuation">,</span>
+            printedBanner<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       
+       <span class="token comment">//刷新IOC容器</span>
+      <span class="token function">refreshContext</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">afterRefresh</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> applicationArguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      listeners<span class="token punctuation">.</span><span class="token function">finished</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      stopWatch<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>logStartupInfo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+         <span class="token keyword">new</span> <span class="token class-name">StartupInfoLogger</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>mainApplicationClass<span class="token punctuation">)</span>
+               <span class="token punctuation">.</span><span class="token function">logStarted</span><span class="token punctuation">(</span><span class="token function">getApplicationLog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stopWatch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token keyword">return</span> context<span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+   <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">handleRunFailure</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> listeners<span class="token punctuation">,</span> analyzers<span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>==启动Servlet容器，再启动SpringBoot应用==</strong></p>
+<h2 id="web-xml配置"><a href="#web-xml配置" class="headerlink" title="web.xml配置"></a>web.xml配置</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20200716112342223.png" alt="image-20200716112342223"></p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20200716113704922.png" alt="image-20200716113704922"></p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20200716112401760.png" alt="image-20200716112401760"></p>
+<h2 id="与"><a href="#与" class="headerlink" title="/与/*"></a>/与/*</h2><blockquote>
+<p><code>/</code>   是tomcat用来处理defaultservlet的,也就是处理静态资源的,除了.jsp servlet都是静态资源.而此处是覆盖了tomcat的配置,接管静态资源</p>
+<p>=========</p>
+<p><code>/*</code> 则会接管所有请求,包括jsp.会导致访问jsp出错,并没有mapping</p>
+</blockquote>
+<h2 id="mvc配置视图解析器"><a href="#mvc配置视图解析器" class="headerlink" title="mvc配置视图解析器"></a>mvc配置视图解析器</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20200716112856478.png" alt="image-20200716112856478"></p>
+<h2 id="RequestMapping写法"><a href="#RequestMapping写法" class="headerlink" title="RequestMapping写法"></a>RequestMapping写法</h2><blockquote>
+<p>1.默认,请求路径</p>
+<p>@RequestMapping(“/springmvc”)</p>
+<p>@RequestMapping(value=”/helloworld”)</p>
+</blockquote>
+<blockquote>
+<p>2.请求方式method</p>
+<p>@RequestMapping(value=”/testMethord”,<strong>method=RequestMethod.POST</strong>)</p>
+</blockquote>
+<blockquote>
+<p>3.请求参数params</p>
+<p>@RequestMapping(value=”/testParamsAndHeaders”,</p>
+<p><strong>params= {“username”,”age!=10”}</strong>, <strong>headers = { “Accept-Language=en-US,zh;q=0.8” })</strong></p>
+</blockquote>
+<blockquote>
+<p><code>ant风格写法</code></p>
+<p>**?<strong>：匹配文件名中的一个字符</strong>     ——-只能一个</p>
+<p>***<strong>：匹配文件名中的任意字符</strong></p>
+<p>******： <strong>匹配多层路径</strong></p>
+</blockquote>
+<blockquote>
+<p><code>REST风格</code></p>
+<p>REST=representational state transfer,表现层状态转化</p>
+<p>就是表现层(url)与服务器端的状态转化</p>
+<p>@RequestMapping(value=”/testPathVariable/=={id}==”)</p>
+<p>public String testPathVariable(==@PathVariable(“id”)== Integer id){}</p>
+</blockquote>
+<h2 id="REST请求方式转delete-put等"><a href="#REST请求方式转delete-put等" class="headerlink" title="REST请求方式转delete,put等"></a>REST请求方式转delete,put等</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20200716132721474.png" alt="image-20200716132721474"></p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20200716133438999.png" alt="image-20200716133438999"></p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/image-20200716133706494.png" alt="image-20200716133706494"></p>
+<h2 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h2><blockquote>
+<p>获取REST路径中占位的值</p>
+</blockquote>
+<h2 id="RequesParam"><a href="#RequesParam" class="headerlink" title="@RequesParam"></a>@RequesParam</h2><blockquote>
+<p>获取==请求参数中的值==,传值到方法参数中.</p>
+<pre class="line-numbers language-none"><code class="language-none">public String handle01(@RequestParam(value &#x3D; &quot;username&quot;,required &#x3D; false,defaultValue &#x3D; &quot;xxx&quot;) String username,
+                       @RequestParam(&quot;password&quot;) String password)&#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<h2 id="CookieValue"><a href="#CookieValue" class="headerlink" title="@CookieValue"></a>@CookieValue</h2><blockquote>
+<p>获取cookies中的值</p>
+<p>public String testCookieValue(<strong>@CookieValue(“JSESSIONID”)</strong> String sessionId) {</p>
+</blockquote>
+<h2 id="CharacterEncodingFilter解决乱码"><a href="#CharacterEncodingFilter解决乱码" class="headerlink" title="CharacterEncodingFilter解决乱码"></a>CharacterEncodingFilter解决乱码</h2><pre class="line-numbers language-none"><code class="language-none">&lt;filter&gt;
+    &lt;filter-name&gt;spFilter&lt;&#x2F;filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;&#x2F;filter-class&gt;
+    &lt;init-param&gt;
+        &lt;!-- 解决post请求乱码--&gt;
+        &lt;param-name&gt;encoding&lt;&#x2F;param-name&gt;
+        &lt;param-value&gt;UTF-8&lt;&#x2F;param-value&gt;
+    &lt;&#x2F;init-param&gt;
+    &lt;init-param&gt;
+        &lt;!-- 解决响应乱码--&gt;
+        &lt;param-name&gt;forceEncoding&lt;&#x2F;param-name&gt;
+        &lt;param-value&gt;true&lt;&#x2F;param-value&gt;
+    &lt;&#x2F;init-param&gt;
+&lt;&#x2F;filter&gt;
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;spFilter&lt;&#x2F;filter-name&gt;
+    &lt;url-pattern&gt;&#x2F;*&lt;&#x2F;url-pattern&gt;
+&lt;&#x2F;filter-mapping&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>==解决request,get请求编码==,修改tomcat server.xml </p>
+<p><Connector URIEncoding="UTF-8" port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" /></p>
+</blockquote>
+<h2 id="传入原生api"><a href="#传入原生api" class="headerlink" title="传入原生api"></a>传入原生api</h2><pre class="line-numbers language-none"><code class="language-none">1)    HttpServletRequest
+2)    HttpServletResponse
+3)    HttpSession
+
+4)    **java.security.Principal**
+5)    **Locale**
+6)    **InputStream**
+7)    **OutputStream**
+8)    **Reader**
+9)    **Writer**
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h2 id="Map-Model-ModelMap"><a href="#Map-Model-ModelMap" class="headerlink" title="Map,Model,ModelMap"></a>Map,Model,ModelMap</h2><blockquote>
+<p>这三种类型最终都是BindingAwareModelMap在工作,并且将数据存在请求域中.org.springframework.validation.support.==BindingAwareModelMap==</p>
+</blockquote>
+<p>实现关系</p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143453.png" alt="image-20200716190604605"></p>
+<h2 id="ModelAndView"><a href="#ModelAndView" class="headerlink" title="ModelAndView"></a>ModelAndView</h2><h2 id="SessionAttributes"><a href="#SessionAttributes" class="headerlink" title="@SessionAttributes"></a>@SessionAttributes</h2><blockquote>
+<p>只能标在类上,可以指定为某个key的数据,同时给session保存一份.或指定class的key</p>
+<p><code>一般不用,容易引发异常</code></p>
+<p>==推荐用原生api放数据==</p>
+</blockquote>
+<h2 id="ModelAttribute"><a href="#ModelAttribute" class="headerlink" title="@ModelAttribute"></a>@ModelAttribute</h2><blockquote>
+<p>l 在方法定义上使用 @ModelAttribute 注解：Spring MVC 在调用目标处理方法前，会先逐个调用在方法级上标注了 @ModelAttribute 的方法。</p>
+<p>l 在方法的入参前使用 @ModelAttribute 注解：可以从隐含对象中获取隐含的模型数据中获取对象，再将请求参数绑定到对象中，再传入入参</p>
+</blockquote>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p>总流程<img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143502.png" alt="image-20200717111402337"></p>
+<p><code>给某个controller方法参数赋值:</code></p>
+<p>1.<img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143507.png" alt="image-20200717162049181"></p>
+<p>提前运行此类方法.</p>
+<p>1.1给此类方法的参数赋值,先找是否有标注了注解的参数,有就先解析</p>
+<p>1.2然后解析没有注解的普通参数,<img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143510.png" alt="image-20200717162400012"></p>
+<p>​    1.2.1判断是否是原生api的类型,有的话对应赋值</p>
+<p>​    1.2.2判断是否是Map等类型,是的话将隐含模型赋值过去.</p>
+<p>​    1.2.3判断是否是…………</p>
+<p>1.3自动生成一个kv对,key是@ModelAttribute的value值/或者返回值类型首字母小写. value就是该ModelAttribute方法的返回值.然后将kv对存入隐含模型(前提是隐含模型中不存在该key)</p>
+<p>以上是运行标了@ModelAttribute注解的方法</p>
+<hr>
+<p>2.对该controller的方法参数赋值.</p>
+<p>​    2.0判断是否有注解.</p>
+<p>​    2.1判断是否是原生api的类型,有的话对应赋值</p>
+<p>​    2.2判断是否是Map等类型,是的话将隐含模型赋值过去.</p>
+<p>​    2.3判断是否是…………</p>
+<hr>
+<p>自定义类型赋值:</p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143514.png" alt="image-20200717170622105"></p>
+<pre class="line-numbers language-none"><code class="language-none">自定义类型赋值,会在隐含模型中先找一遍,才会赋值<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143518.png" alt="image-20200717181227239"></p>
+<h2 id="指定前缀redirect-forward"><a href="#指定前缀redirect-forward" class="headerlink" title="指定前缀redirect/forward"></a>指定前缀redirect/forward</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143523.png" alt="image-20200717172518986"></p>
+<h2 id="mvc请求映射标签"><a href="#mvc请求映射标签" class="headerlink" title="mvc请求映射标签"></a>mvc请求映射标签</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143526.png" alt="image-20200717182030248"></p>
+<h2 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143529.png" alt="image-20200717194512752"></p>
+<h2 id="mvc数据绑定"><a href="#mvc数据绑定" class="headerlink" title="mvc数据绑定"></a>mvc数据绑定</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143533.png" alt="image-20200717195838205"></p>
+<h2 id="ResponseBody"><a href="#ResponseBody" class="headerlink" title="@ResponseBody"></a>@ResponseBody</h2><blockquote>
+<p>将服务器返回的数据放到响应体中.</p>
+</blockquote>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>旧版本:用apache FileUpload,现在已不推荐;</p>
+<p>现在可以用servlet3.0直接实现.</p>
+<ol>
+<li><p>注册文件上传解析器</p>
+<blockquote>
+<p>&lt;bean id=”multipartResolver”</p>
+<p> class=”org.springframework.web.multipart.commons.<strong>CommonsMultipartResolver</strong>“&gt;</p>
+<p><property name="defaultEncoding" value="UTF-8"></property></p>
+<p><property name="maxUploadSize" value="1024000"></property></p>
+</bean>
+
+
+
+<p>///////id必须是multipartResover</p>
+</blockquote>
+</li>
+<li><p>方法参数使用MultipartFlie接收</p>
+<blockquote>
+<p>@RequestMapping(value=”/testUpload”,method=RequestMethod.<strong>POST</strong>)</p>
+<p>public String testUpload(@RequestParam(value=”desc”,required=false) String desc, @RequestParam(“file”) <strong>MultipartFile</strong> multipartFile)</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="多文件上传"><a href="#多文件上传" class="headerlink" title="多文件上传"></a>多文件上传</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143542.png" alt="image-20200720114357428"></p>
+<h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><blockquote>
+<p>Spring MVC也可以使用拦截器对请求进行拦截处理，用户可以自定义拦截器来实现特定的功能，<strong>自定义的拦截器必须实现<strong><strong>HandlerInterceptor</strong></strong>接口</strong> </p>
+<p><strong>preHandle</strong>()：这个方法在业务处理器处理请求之前被调用，在该方法中对用户请求 request 进行处理。**如果程序员决定该拦截器对请求进行拦截处理后还要调用其他的拦截器，或者是业务处理器去进行处理，则返回true；如果程序员决定不需要再调用其他的组件去处理请求，则返回false。</p>
+<p><strong>postHandle</strong>()：<strong>这个方法在业务处理器处理完请求后，但是DispatcherServlet 向客户端返回响应前被调用</strong>，在该方法中对用户请求request进行处理。</p>
+<p><strong>afterCompletion</strong>()：这个方法<strong>在</strong> <strong>DispatcherServlet</strong> <strong>完全处理完请求后被调用</strong>，可以在该方法中进行一些资源清理的操作。</p>
+</blockquote>
+<p>配置拦截器</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;mvc:interceptors&gt;
+**&lt;!--** **声明自定义拦截器** **--&gt;**
+**&lt;bean id&#x3D;&quot;firstHandlerInterceptor&quot;**
+**class&#x3D;&quot;com.atguigu.springmvc.interceptors.FirstHandlerInterceptor&quot;&gt;&lt;&#x2F;bean&gt;**
+&lt;&#x2F;mvc:interceptors&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">&lt;mvc:interceptors&gt;
+&lt;!-- 声明自定义拦截器 --&gt;
+&lt;bean id&#x3D;&quot;firstHandlerInterceptor&quot;
+  class&#x3D;&quot;com.atguigu.springmvc.interceptors.FirstHandlerInterceptor&quot;&gt;&lt;&#x2F;bean&gt;
+&lt;!-- 配置拦截器引用 --&gt;
+&lt;mvc:interceptor&gt;                        
+&lt;mvc:mapping path&#x3D;&quot;&#x2F;empList&quot;&#x2F;&gt;
+&lt;!-- &lt;mvc:exclude-mapping path&#x3D;&quot;&#x2F;empList&quot;&#x2F;&gt; --&gt;
+&lt;bean id&#x3D;&quot;secondHandlerInterceptor&quot;
+         class&#x3D;&quot;com.atguigu.springmvc.interceptors.SecondHandlerInterceptor&quot;&gt;&lt;&#x2F;bean&gt;
+&lt;&#x2F;mvc:interceptor&gt;
+&lt;&#x2F;mvc:interceptors&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<blockquote>
+<p>如果出现一个preHandle返回false,则已放行的preHandle,对应的<strong>afterCompletion</strong>()也会执行(逆序);</p>
+</blockquote>
+<h2 id="SpringMVC国际化"><a href="#SpringMVC国际化" class="headerlink" title="SpringMVC国际化"></a>SpringMVC国际化</h2><p>简单国际化</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;bean id&#x3D;&quot;messageSource&quot; class&#x3D;&quot;org.springframework.context.support.ResourceBundleMessageSource&quot;&gt;
+&lt;property name&#x3D;&quot;basename&quot; value&#x3D;&quot;i18n&quot;&gt;&lt;&#x2F;property&gt;
+&lt;&#x2F;bean&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>自动国际化之SessionLocalResover</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p><img src="C:\Users\lifeng\AppData\Roaming\Typora\typora-user-images\image-20200720134806941.png" alt="image-20200720134806941"></p>
+<h3 id="A-ExceptionHandler"><a href="#A-ExceptionHandler" class="headerlink" title="A.ExceptionHandler"></a>A.ExceptionHandler</h3><p>1.使用**@ExceptionHandler**处理单个类的异常</p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143547.png" alt="image-20200720135553926"></p>
+<p>2.公共类统一处理异常@ControllerAdvice</p>
+<p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143551.png" alt="image-20200720135725186"></p>
+<p>B.</p>
+<h2 id="SpringMVC总执行流程"><a href="#SpringMVC总执行流程" class="headerlink" title="SpringMVC总执行流程"></a>SpringMVC总执行流程</h2><p><img src="https://gitee.com/fengylf/pubtypora/raw/master/img/20210825143554.png" alt="image-20200720143248105"></p>
+<p><img src="C:\Users\lifeng\AppData\Roaming\Typora\typora-user-images\image-20200720143314026.png" alt="image-20200720143314026"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/f/about" rel="external nofollow noreferrer">摩托</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://fengylf.github.io/f/f/2021/04/25/note/ssm/SpringMVC%E9%9B%B7%E4%B8%B0%E9%98%B3/">https://fengylf.github.io/f/f/2021/04/25/note/ssm/SpringMVC%E9%9B%B7%E4%B8%B0%E9%98%B3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/f/about" target="_blank">摩托</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/f/tags/spring%E9%9B%B7%E4%B8%B0%E9%98%B3/">
+                                    <span class="chip bg-color">spring雷丰阳</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/f/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/f/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/f/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/f/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/f/2021/04/25/note/ssm/SpringMVC%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/10.jpg" class="responsive-img" alt="SpringMVC数据输出">
+                        
+                        <span class="card-title">SpringMVC数据输出</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/spring/" class="post-category">
+                                    spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/spring%E9%9B%B7%E4%B8%B0%E9%98%B3/">
+                        <span class="chip bg-color">spring雷丰阳</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/f/2021/04/25/note/ssm/ssm%E6%95%B4%E5%90%88/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/7.jpg" class="responsive-img" alt="ssm整合雷丰阳">
+                        
+                        <span class="card-title">ssm整合雷丰阳</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/spring/" class="post-category">
+                                    spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/spring%E9%9B%B7%E4%B8%B0%E9%98%B3/">
+                        <span class="chip bg-color">spring雷丰阳</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/f/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/f/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/f/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/f/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/f/about" target="_blank">摩托</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">329.5k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1300379737@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1300379737" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1300379737" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/f/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/f/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/f/libs/materialize/materialize.min.js"></script>
+    <script src="/f/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/f/libs/aos/aos.js"></script>
+    <script src="/f/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/f/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/f/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/f/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/f/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/f/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

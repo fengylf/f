@@ -1,0 +1,1575 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+	<meta name="referrer" content="no-referrer" />
+    <meta name="keywords" content="SpringBoot雷丰阳2.3, Hexo">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>SpringBoot雷丰阳2.3 | Hexo</title>
+    <link rel="icon" type="image/png" href="/f/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/f/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/f/css/my.css">
+
+    <script src="/f/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/f/" class="waves-effect waves-light">
+                    
+                    <img src="/f/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/f/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/f/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/f/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/f/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">SpringBoot雷丰阳2.3</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/f/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/f/tags/%E9%9B%B7%E4%B8%B0%E9%98%B3/">
+                                <span class="chip bg-color">雷丰阳</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/f/categories/springboot/" class="post-category">
+                                springboot
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-08-15
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/f/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;tomcat启动就会执行此类的onStartup().
+&#x2F;&#x2F;
+@HandlesTypes(WebApplicationInitializer.class)
+public class SpringServletContainerInitializer implements ServletContainerInitializer &#123;
+
+onStartup()&#123;&#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="—2、容器功能—"><a href="#—2、容器功能—" class="headerlink" title="—2、容器功能—"></a>—2、容器功能—</h2><h2 id="2-1、组件添加"><a href="#2-1、组件添加" class="headerlink" title="2.1、组件添加"></a>2.1、组件添加</h2><h3 id="1、-Configuration"><a href="#1、-Configuration" class="headerlink" title="1、@Configuration"></a>1、@Configuration</h3><ul>
+<li><p>基本使用</p>
+</li>
+<li><p><strong>Full模式与Lite模式</strong></p>
+</li>
+<li><ul>
+<li>示例</li>
+<li>最佳实战</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>配置 类组件之间无依赖关系用Lite模式加速容器启动过程，减少判断</li>
+<li>配置类组件之间有依赖关系，方法会被调用得到之前单实例组件，用Full模式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;**
+ * 1、配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的
+ * 2、配置类本身也是组件
+ * 3、proxyBeanMethods：代理bean的方法
+ *      Full(proxyBeanMethods &#x3D; true)、【保证每个@Bean方法被调用多少次返回的组件都是单实例的】
+ *      Lite(proxyBeanMethods &#x3D; false)【每个@Bean方法被调用多少次返回的组件都是新创建的】
+ *      组件依赖必须使用Full模式默认。其他默认是否Lite模式
+ *&#x2F;
+@Configuration(proxyBeanMethods &#x3D; false) &#x2F;&#x2F;告诉SpringBoot这是一个配置类 &#x3D;&#x3D; 配置文件
+public class MyConfig &#123;
+    &#x2F;**
+     * Full:外部无论对配置类中的这个组件注册方法调用多少次获取的都是之前注册容器中的单实例对象
+     * @return
+     *&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="2-3、配置绑定"><a href="#2-3、配置绑定" class="headerlink" title="2.3、配置绑定"></a>2.3、配置绑定</h2><p>如何使用Java读取到properties文件中的内容，并且把它封装到JavaBean中，以供随时使用；</p>
+<h3 id="1、-ConfigurationProperties"><a href="#1、-ConfigurationProperties" class="headerlink" title="1、@ConfigurationProperties"></a>1、@ConfigurationProperties</h3><pre class="line-numbers language-none"><code class="language-none">配合@PropertySource加载指定配置文件,而非默认配置文件
+
+&#x2F;**
+ * 将配置文件中配置的每一个属性的值，映射到这个组件中
+ * @ConfigurationProperties：告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定；
+ *      prefix &#x3D; &quot;person&quot;：配置文件中哪个下面的所有属性进行一一映射
+ *
+ * 只有这个组件是容器中的组件，才能容器提供的@ConfigurationProperties功能；
+ *  @ConfigurationProperties(prefix &#x3D; &quot;person&quot;)默认从全局配置文件中获取值；
+ *
+ *&#x2F;
+@PropertySource(value &#x3D; &#123;&quot;classpath:person.properties&quot;&#125;)
+@Component
+@ConfigurationProperties(prefix &#x3D; &quot;mycar&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2、-EnableConfigurationProperties-ConfigurationProperties"><a href="#2、-EnableConfigurationProperties-ConfigurationProperties" class="headerlink" title="2、@EnableConfigurationProperties + @ConfigurationProperties"></a>2、@EnableConfigurationProperties + @ConfigurationProperties</h3><pre class="line-numbers language-none"><code class="language-none">@EnableConfigurationProperties(Car.class)标在配置类
+&#x2F;&#x2F;1、开启Car配置绑定功能
+&#x2F;&#x2F;2、把这个Car这个组件自动注册到容器中
+
+public class MyConfig &#123;&#x2F;&#x2F;第三方类
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>]</p>
+<h2 id="–3-自动配置原理–"><a href="#–3-自动配置原理–" class="headerlink" title="–3 自动配置原理–"></a>–3 自动配置原理–</h2><h3 id="1、-AutoConfigurationPackage"><a href="#1、-AutoConfigurationPackage" class="headerlink" title="1、@AutoConfigurationPackage"></a>1、@AutoConfigurationPackage</h3><p>自动配置包？指定了默认的包规则</p>
+<pre class="line-numbers language-none"><code class="language-none">@Import(AutoConfigurationPackages.Registrar.class)  &#x2F;&#x2F;给容器中导入一个组件
+public @interface AutoConfigurationPackage &#123;&#125;
+
+&#x2F;&#x2F;利用Registrar给容器中导入一系列组件
+&#x2F;&#x2F;将指定的一个包下的所有组件导入进来？MainApplication 所在包下。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2、-Import-AutoConfigurationImportSelector-class"><a href="#2、-Import-AutoConfigurationImportSelector-class" class="headerlink" title="2、@Import(AutoConfigurationImportSelector.class)"></a>2、@Import(AutoConfigurationImportSelector.class)</h3><pre class="line-numbers language-none"><code class="language-none">1、利用getAutoConfigurationEntry(annotationMetadata);给容器中批量导入一些组件
+2、调用List&lt;String&gt; configurations &#x3D; getCandidateConfigurations(annotationMetadata, attributes)获取到所有需要导入到容器中的配置类
+3、利用工厂加载 Map&lt;String, List&lt;String&gt;&gt; loadSpringFactories(@Nullable ClassLoader classLoader)；得到所有的组件
+4、从META-INF&#x2F;spring.factories位置来加载一个文件。
+    默认扫描我们当前系统里面所有META-INF&#x2F;spring.factories位置的文件
+    spring-boot-autoconfigure-2.3.4.RELEASE.jar包里面也有META-INF&#x2F;spring.factories
+    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="—5-Web开发—"><a href="#—5-Web开发—" class="headerlink" title="—5 Web开发—"></a>—5 Web开发—</h2><h2 id="1、SpringMVC自动配置概览"><a href="#1、SpringMVC自动配置概览" class="headerlink" title="1、SpringMVC自动配置概览"></a>1、SpringMVC自动配置概览</h2><p>Spring Boot provides auto-configuration for Spring MVC that <strong>works well with most applications.(大多场景我们都无需自定义配置)</strong></p>
+<p>The auto-configuration adds the following features on top of Spring’s defaults:</p>
+<ul>
+<li><p>Inclusion of <code>ContentNegotiatingViewResolver</code> and <code>BeanNameViewResolver</code> beans.</p>
+</li>
+<li><ul>
+<li>内容协商视图解析器和BeanName视图解析器</li>
+</ul>
+</li>
+<li><p>Support for serving static resources, including support for WebJars (covered <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-spring-mvc-static-content">later in this document</a>)).</p>
+</li>
+<li><ul>
+<li>静态资源（包括webjars）</li>
+</ul>
+</li>
+<li><p>Automatic registration of <code>Converter</code>, <code>GenericConverter</code>, and <code>Formatter</code> beans.</p>
+</li>
+<li><ul>
+<li>自动注册 <code>Converter，GenericConverter，Formatter </code></li>
+</ul>
+</li>
+<li><p>Support for <code>HttpMessageConverters</code> (covered <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-spring-mvc-message-converters">later in this document</a>).</p>
+</li>
+<li><ul>
+<li>支持 <code>HttpMessageConverters</code> （后来我们配合内容协商理解原理）</li>
+</ul>
+</li>
+<li><p>Automatic registration of <code>MessageCodesResolver</code> (covered <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-spring-message-codes">later in this document</a>).</p>
+</li>
+<li><ul>
+<li>自动注册 <code>MessageCodesResolver</code> （国际化用）</li>
+</ul>
+</li>
+<li><p>Static <code>index.html</code> support.</p>
+</li>
+<li><ul>
+<li>静态index.html 页支持</li>
+</ul>
+</li>
+<li><p>Custom <code>Favicon</code> support (covered <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-spring-mvc-favicon">later in this document</a>).</p>
+</li>
+<li><ul>
+<li>自定义 <code>Favicon</code>  </li>
+</ul>
+</li>
+<li><p>Automatic use of a <code>ConfigurableWebBindingInitializer</code> bean (covered <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-spring-mvc-web-binding-initializer">later in this document</a>).</p>
+</li>
+<li><ul>
+<li>自动使用 <code>ConfigurableWebBindingInitializer</code> ，（DataBinder负责将请求数据绑定到JavaBean上）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>If you want to keep those Spring Boot MVC customizations and make more <a target="_blank" rel="noopener" href="https://docs.spring.io/spring/docs/5.2.9.RELEASE/spring-framework-reference/web.html#mvc">MVC customizations</a> (interceptors, formatters, view controllers, and other features), you can add your own <code>@Configuration</code> class of type <code>WebMvcConfigurer</code> but <strong>without</strong> <code>@EnableWebMvc</code>.</p>
+<p><strong>不用@EnableWebMvc注解。使用</strong> <strong><code>@Configuration</code></strong> <strong>+</strong> <strong><code>WebMvcConfigurer</code></strong> <strong>自定义规则</strong></p>
+</blockquote>
+<blockquote>
+<p>If you want to provide custom instances of <code>RequestMappingHandlerMapping</code>, <code>RequestMappingHandlerAdapter</code>, or <code>ExceptionHandlerExceptionResolver</code>, and still keep the Spring Boot MVC customizations, you can declare a bean of type <code>WebMvcRegistrations</code> and use it to provide custom instances of those components.</p>
+<p><strong>声明</strong> <strong><code>WebMvcRegistrations</code></strong> <strong>改变默认底层组件</strong></p>
+</blockquote>
+<blockquote>
+<p>If you want to take complete control of Spring MVC, you can add your own <code>@Configuration</code> annotated with <code>@EnableWebMvc</code>, or alternatively add your own <code>@Configuration</code>-annotated <code>DelegatingWebMvcConfiguration</code> as described in the Javadoc of <code>@EnableWebMvc</code>.</p>
+<p><strong>使用</strong> <strong><code>@EnableWebMvc+@Configuration+DelegatingWebMvcConfiguration 全面接管SpringMVC</code></strong></p>
+</blockquote>
+<h2 id="2-4、静态资源配置原理"><a href="#2-4、静态资源配置原理" class="headerlink" title="2.4、静态资源配置原理"></a>2.4、静态资源配置原理</h2><ul>
+<li>SpringBoot启动默认加载  xxxAutoConfiguration 类（自动配置类）</li>
+<li>SpringMVC功能的自动配置类 WebMvcAutoConfiguration，生效</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">@Configuration(proxyBeanMethods &#x3D; false)
+@ConditionalOnWebApplication(type &#x3D; Type.SERVLET)
+@ConditionalOnClass(&#123; Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class &#125;)
+@ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)
+@AutoConfigureAfter(&#123; DispatcherServletAutoConfiguration.class, TaskExecutionAutoConfiguration.class,
+        ValidationAutoConfiguration.class &#125;)
+public class WebMvcAutoConfiguration &#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>给容器中配了什么。</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">@Configuration(proxyBeanMethods &#x3D; false)
+@Import(EnableWebMvcConfiguration.class)
+@EnableConfigurationProperties(&#123; WebMvcProperties.class, ResourceProperties.class &#125;)
+@Order(0)
+public static class WebMvcAutoConfigurationAdapter implements WebMvcConfigurer &#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>配置文件的相关属性和xxx进行了绑定。WebMvcProperties ==<strong>spring.mvc</strong>、ResourceProperties ==<strong>spring.resources</strong></li>
+</ul>
+<h4 id="1、配置类只有一个有参构造器"><a href="#1、配置类只有一个有参构造器" class="headerlink" title="1、配置类只有一个有参构造器"></a>1、配置类只有一个有参构造器</h4><pre class="line-numbers language-none"><code class="language-none">    &#x2F;&#x2F;有参构造器所有参数的值都会从容器中确定
+&#x2F;&#x2F;ResourceProperties resourceProperties；获取和spring.resources绑定的所有的值的对象
+&#x2F;&#x2F;WebMvcProperties mvcProperties 获取和spring.mvc绑定的所有的值的对象
+&#x2F;&#x2F;ListableBeanFactory beanFactory Spring的beanFactory
+&#x2F;&#x2F;HttpMessageConverters 找到所有的HttpMessageConverters
+&#x2F;&#x2F;ResourceHandlerRegistrationCustomizer 找到 资源处理器的自定义器。&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&#x2F;&#x2F;DispatcherServletPath  
+&#x2F;&#x2F;ServletRegistrationBean   给应用注册Servlet、Filter....
+    public WebMvcAutoConfigurationAdapter(ResourceProperties resourceProperties, WebMvcProperties mvcProperties,
+                ListableBeanFactory beanFactory, ObjectProvider&lt;HttpMessageConverters&gt; messageConvertersProvider,
+                ObjectProvider&lt;ResourceHandlerRegistrationCustomizer&gt; resourceHandlerRegistrationCustomizerProvider,
+                ObjectProvider&lt;DispatcherServletPath&gt; dispatcherServletPath,
+                ObjectProvider&lt;ServletRegistrationBean&lt;?&gt;&gt; servletRegistrations) &#123;
+            this.resourceProperties &#x3D; resourceProperties;
+            this.mvcProperties &#x3D; mvcProperties;
+            this.beanFactory &#x3D; beanFactory;
+            this.messageConvertersProvider &#x3D; messageConvertersProvider;
+            this.resourceHandlerRegistrationCustomizer &#x3D; resourceHandlerRegistrationCustomizerProvider.getIfAvailable();
+            this.dispatcherServletPath &#x3D; dispatcherServletPath;
+            this.servletRegistrations &#x3D; servletRegistrations;
+        &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h4 id="2、资源处理的默认规则"><a href="#2、资源处理的默认规则" class="headerlink" title="2、资源处理的默认规则"></a>2、资源处理的默认规则</h4><pre class="line-numbers language-none"><code class="language-none">@Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) &#123;
+            if (!this.resourceProperties.isAddMappings()) &#123;
+                logger.debug(&quot;Default resource handling disabled&quot;);
+                return;
+            &#125;
+            Duration cachePeriod &#x3D; this.resourceProperties.getCache().getPeriod();
+            CacheControl cacheControl &#x3D; this.resourceProperties.getCache().getCachecontrol().toHttpCacheControl();
+            &#x2F;&#x2F;webjars的规则
+            if (!registry.hasMappingForPattern(&quot;&#x2F;webjars&#x2F;**&quot;)) &#123;
+                customizeResourceHandlerRegistration(registry.addResourceHandler(&quot;&#x2F;webjars&#x2F;**&quot;)
+                        .addResourceLocations(&quot;classpath:&#x2F;META-INF&#x2F;resources&#x2F;webjars&#x2F;&quot;)
+                        .setCachePeriod(getSeconds(cachePeriod)).setCacheControl(cacheControl));
+            &#125;
+            
+            &#x2F;&#x2F;
+            String staticPathPattern &#x3D; this.mvcProperties.getStaticPathPattern();
+            if (!registry.hasMappingForPattern(staticPathPattern)) &#123;
+                customizeResourceHandlerRegistration(registry.addResourceHandler(staticPathPattern)
+                        .addResourceLocations(getResourceLocations(this.resourceProperties.getStaticLocations()))
+                        .setCachePeriod(getSeconds(cachePeriod)).setCacheControl(cacheControl));
+            &#125;
+        &#125;
+spring:
+#  mvc:
+#    static-path-pattern: &#x2F;res&#x2F;**
+
+  resources:
+    add-mappings: false   禁用所有静态资源规则
+@ConfigurationProperties(prefix &#x3D; &quot;spring.resources&quot;, ignoreUnknownFields &#x3D; false)
+public class ResourceProperties &#123;
+
+    private static final String[] CLASSPATH_RESOURCE_LOCATIONS &#x3D; &#123; &quot;classpath:&#x2F;META-INF&#x2F;resources&#x2F;&quot;,
+            &quot;classpath:&#x2F;resources&#x2F;&quot;, &quot;classpath:&#x2F;static&#x2F;&quot;, &quot;classpath:&#x2F;public&#x2F;&quot; &#125;;
+
+    &#x2F;**
+     * Locations of static resources. Defaults to classpath:[&#x2F;META-INF&#x2F;resources&#x2F;,
+     * &#x2F;resources&#x2F;, &#x2F;static&#x2F;, &#x2F;public&#x2F;].
+     *&#x2F;
+    private String[] staticLocations &#x3D; CLASSPATH_RESOURCE_LOCATIONS;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3、欢迎页的处理规则"><a href="#3、欢迎页的处理规则" class="headerlink" title="3、欢迎页的处理规则"></a>3、欢迎页的处理规则</h4><pre class="line-numbers language-none"><code class="language-none">HandlerMapping：处理器映射。保存了每一个Handler能处理哪些请求。  
+
+@Bean
+    public WelcomePageHandlerMapping welcomePageHandlerMapping(ApplicationContext applicationContext,
+            FormattingConversionService mvcConversionService, ResourceUrlProvider mvcResourceUrlProvider) &#123;
+        WelcomePageHandlerMapping welcomePageHandlerMapping &#x3D; new WelcomePageHandlerMapping(
+                new TemplateAvailabilityProviders(applicationContext), applicationContext, getWelcomePage(),
+                this.mvcProperties.getStaticPathPattern());
+        welcomePageHandlerMapping.setInterceptors(getInterceptors(mvcConversionService, mvcResourceUrlProvider));
+        welcomePageHandlerMapping.setCorsConfigurations(getCorsConfigurations());
+        return welcomePageHandlerMapping;
+    &#125;
+
+WelcomePageHandlerMapping(TemplateAvailabilityProviders templateAvailabilityProviders,
+        ApplicationContext applicationContext, Optional&lt;Resource&gt; welcomePage, String staticPathPattern) &#123;
+    if (welcomePage.isPresent() &amp;&amp; &quot;&#x2F;**&quot;.equals(staticPathPattern)) &#123;
+        &#x2F;&#x2F;要用欢迎页功能，必须是&#x2F;**
+        logger.info(&quot;Adding welcome page: &quot; + welcomePage.get());
+        setRootViewName(&quot;forward:index.html&quot;);
+    &#125;
+    else if (welcomeTemplateExists(templateAvailabilityProviders, applicationContext)) &#123;
+        &#x2F;&#x2F; 调用Controller  &#x2F;index
+        logger.info(&quot;Adding welcome page template: index&quot;);
+        setRootViewName(&quot;index&quot;);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3、请求参数处理"><a href="#3、请求参数处理" class="headerlink" title="3、请求参数处理"></a>3、请求参数处理</h2><h2 id="1、rest使用与原理"><a href="#1、rest使用与原理" class="headerlink" title="1、rest使用与原理"></a>1、rest使用与原理</h2><ul>
+<li><p>@xxxMapping；</p>
+</li>
+<li><p>Rest风格支持（<em>使用<strong>HTTP</strong>请求方式动词来表示对资源的操作</em>）</p>
+</li>
+<li><ul>
+<li><em>以前：</em><em>/getUser</em>  <em>获取用户</em>   <em>/deleteUser</em> <em>删除用户</em>   <em>/editUser</em>  <em>修改用户</em>    <em>/saveUser</em> <em>保存用户</em></li>
+<li><em>现在： /user</em>   *GET-*<em>获取用户</em>   *DELETE-*<em>删除用户</em>   *PUT-*<em>修改用户</em>    *POST-*<em>保存用户</em></li>
+<li>==核心Filter；HiddenHttpMethodFilter==</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li><p>==用法： 表单method=post，隐藏域 _method=put==</p>
+</li>
+<li><p>```<br>spring:<br>  mvc:</p>
+<pre><code>hiddenmethod:
+  filter:
+    enabled: true   #开启页面表单的Rest功能
+</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">
+- - 扩展：如何把_method 这个名字换成我们自己喜欢的。
+
+
+
+Rest原理（表单提交要使用REST的时候）
+
+- 表单提交会带上**_method&#x3D;PUT**
+- **请求过来被**HiddenHttpMethodFilter拦截
+
+- - 请求是否正常，并且是POST
+
+- - - 获取到**_method**的值。
+    - 兼容以下请求；**PUT**.**DELETE**.**PATCH**
+    - **原生request（post），包装模式requesWrapper重写了getMethod方法，返回的是传入的值。**
+    - **过滤器链放行的时候用wrapper。以后的方法调用getMethod是调用****requesWrapper的。**
+
+**Rest使用客户端工具，**
+
+- 如PostMan直接发送Put、delete等方式请求，无需Filter。
+
+## &#x3D;&#x3D;1、普通参数与基本注解&#x3D;&#x3D;
+
+### 1.1、注解：
+
+@PathVariable、@RequestHeader、@ModelAttribute、@RequestParam、@MatrixVariable、@CookieValue、@RequestBody,@HttpServletRequest
+
+@RequesteAttribute&#x2F;&#x2F;获取请求域中的某个value
+
+&#96;&#96;&#96;java
+@RestController
+public class ParameterTestController &#123;
+
+
+    &#x2F;&#x2F;  car&#x2F;2&#x2F;owner&#x2F;zhangsan
+    @GetMapping(&quot;&#x2F;car&#x2F;&#123;id&#125;&#x2F;owner&#x2F;&#123;username&#125;&quot;)
+    public Map&lt;String,Object&gt; getCar(
+    @PathVariable(&quot;id&quot;) Integer id,
+ @PathVariable(&quot;username&quot;) String name,
+ @PathVariable Map&lt;String,String&gt; pv,&#x2F;&#x2F;一起封装为map
+ @RequestHeader(&quot;User-Agent&quot;) String userAgent,
+ @RequestHeader Map&lt;String,String&gt; header,
+@RequestParam(&quot;age&quot;) Integer age,
+ @RequestParam(&quot;inters&quot;) List&lt;String&gt; inters,&#x2F;&#x2F;多选框等
+     @RequestParam Map&lt;String,String&gt; params,
+    @CookieValue(&quot;_ga&quot;) String _ga,
+  @CookieValue(&quot;_ga&quot;) Cookie cookie)&#123;&#125;
+  
+    @PostMapping(&quot;&#x2F;save&quot;)
+    public Map postMethod(@RequestBody String content)&#123;
+        Map&lt;String,Object&gt; map &#x3D; new HashMap&lt;&gt;();
+        map.put(&quot;content&quot;,content);
+        return map;
+    &#125;
+    &#x2F;&#x2F;1、语法： 请求路径：&#x2F;cars&#x2F;sell;low&#x3D;34;brand&#x3D;byd,audi,yd
+    &#x2F;&#x2F;2、SpringBoot默认是禁用了矩阵变量的功能
+    &#x2F;&#x2F;      手动开启：原理。对于路径的处理。UrlPathHelper进行解析。
+    &#x2F;&#x2F;              removeSemicolonContent（移除分号内容）支持矩阵变量的
+    &#x2F;&#x2F;3、矩阵变量必须有url路径变量才能被解析
+    @GetMapping(&quot;&#x2F;cars&#x2F;&#123;path&#125;&quot;)
+    public Map carsSell(@MatrixVariable(&quot;low&quot;) Integer low,
+                        @MatrixVariable(&quot;brand&quot;) List&lt;String&gt; brand,
+                        @PathVariable(&quot;path&quot;) String path)&#123;
+        Map&lt;String,Object&gt; map &#x3D; new HashMap&lt;&gt;();
+
+        map.put(&quot;low&quot;,low);
+        map.put(&quot;brand&quot;,brand);
+        map.put(&quot;path&quot;,path);
+        return map;
+    &#125;
+
+    &#x2F;&#x2F; &#x2F;boss&#x2F;1;age&#x3D;20&#x2F;2;age&#x3D;10
+
+    @GetMapping(&quot;&#x2F;boss&#x2F;&#123;bossId&#125;&#x2F;&#123;empId&#125;&quot;)
+    public Map boss(@MatrixVariable(value &#x3D; &quot;age&quot;,pathVar &#x3D; &quot;bossId&quot;) Integer bossAge,
+                    @MatrixVariable(value &#x3D; &quot;age&quot;,pathVar &#x3D; &quot;empId&quot;) Integer empAge)&#123;
+        Map&lt;String,Object&gt; map &#x3D; new HashMap&lt;&gt;();
+
+        map.put(&quot;bossAge&quot;,bossAge);
+        map.put(&quot;empAge&quot;,empAge);
+        return map;
+
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/f/about" rel="external nofollow noreferrer">摩托</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://fengylf.github.io/f/f/2021/08/15/note/springboot/Spring%20Boot%E9%9B%B7%E4%B8%B0%E9%98%B32.3/">https://fengylf.github.io/f/f/2021/08/15/note/springboot/Spring%20Boot%E9%9B%B7%E4%B8%B0%E9%98%B32.3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/f/about" target="_blank">摩托</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/f/tags/%E9%9B%B7%E4%B8%B0%E9%98%B3/">
+                                    <span class="chip bg-color">雷丰阳</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/f/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/f/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/f/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/f/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/f/2021/08/16/note/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/sp%20java%20-jar%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/15.jpg" class="responsive-img" alt="sp java _ jar启动原理">
+                        
+                        <span class="card-title">sp java _ jar启动原理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/" class="post-category">
+                                    文章收藏
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">
+                        <span class="chip bg-color">文章收藏</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/f/2021/08/15/note/springboot/Spring%20Security/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/f/medias/featureimages/3.jpg" class="responsive-img" alt="Spring Security">
+                        
+                        <span class="card-title">Spring Security</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/f/categories/springboot/" class="post-category">
+                                    springboot
+                                </a>
+                            
+                            <a href="/f/categories/SpringSecurity/" class="post-category">
+                                    SpringSecurity
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/f/tags/SpringSecurity/">
+                        <span class="chip bg-color">SpringSecurity</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/f/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/f/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/f/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/f/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/f/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/f/about" target="_blank">摩托</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">329.5k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1300379737@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1300379737" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1300379737" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/f/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/f/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/f/libs/materialize/materialize.min.js"></script>
+    <script src="/f/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/f/libs/aos/aos.js"></script>
+    <script src="/f/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/f/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/f/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/f/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/f/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/f/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
